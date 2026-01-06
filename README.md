@@ -33,7 +33,7 @@ pip install -r requirements.txt
 - MDTraj (for coordinate calculation)
 - NAMD 2.14 or 3.0+ (installed separately on your system)
 
-## 🛠 Usage
+## Usage
 
 ### 1. Basic RMSD Simulation
 Set up a simulation using RMSD of the protein backbone as the progress coordinate.
