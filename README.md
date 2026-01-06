@@ -4,7 +4,7 @@ A robust, user-friendly pipeline to automate the setup of [WESTPA 2.0](https://w
 
 This tool abstracts away the complexity of configuring `west.cfg`, `runseg.sh`, and `system.py`, allowing you to focus on your science.
 
-## 🚀 Key Features
+## Key Features
 
 *   **Zero-Config Setup**: Automatically generates all necessary configuration files (`west.cfg`, `runseg.sh`, `md.conf`).
 *   **Minimal Adaptive Binning (MAB)**: "Killer feature" support. No need to define bin boundaries manually—the system learns them on the fly.
@@ -13,7 +13,7 @@ This tool abstracts away the complexity of configuring `west.cfg`, `runseg.sh`, 
 *   **Robust Analysis**: Includes scripts to recalculate *any* metric (e.g., Free Energy of SASA) from your trajectories, even if you simulated using RMSD.
 *   **Secure Inputs**: Safely handles complex MDTraj selection strings (e.g., `'name "CA" and resid 10'`).
 
-## 📦 Installation
+## Installation
 
 This pipeline requires a standard scientific Python environment. We recommend using Conda/Mamba.
 
@@ -79,7 +79,7 @@ python analyze_alt_metric.py --type rog --sel "protein"
 python analyze_alt_metric.py --type distance --sel "resid 30" --sel2 "resid 60"
 ```
 
-## 📂 Directory Structure
+## Directory Structure
 
 The setup script creates a self-contained directory:
 
@@ -100,6 +100,6 @@ my_sim_01/
     └── ...
 ```
 
-## ⚠️ Notes
+## Notes
 *   **NAMD GPU**: Use `--namd-gpu 0` (or list IDs) to enable GPU acceleration.
 *   **Selection Syntax**: Uses [MDTraj selection syntax](https://mdtraj.org/1.9.8.dev0/atom_selection.html).
