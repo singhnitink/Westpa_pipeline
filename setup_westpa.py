@@ -7,9 +7,11 @@ A user-friendly tool to automate WESTPA simulation setup for NAMD with RMSD-base
 
 Usage:
     python setup_westpa.py --pdb system.pdb --psf system.psf --toppar ./toppar \
-                           --target target.pdb --basis-coor eq.coor \
-                           --basis-vel eq.vel --basis-xsc eq.xsc \
+                           --target target.pdb --box-file box_size.txt \
                            --output-dir ./my_simulation
+
+    Basis state files are optional. If not provided, init.sh will auto-run equilibration:
+    [Optional] --basis-coor eq.coor --basis-vel eq.vel --basis-xsc eq.xsc
 
 Author: Nitin Singh
 """
@@ -44,10 +46,13 @@ This will create a complete WESTPA simulation directory ready to run.
     required.add_argument('--psf', required=True, help='System PSF topology file')
     required.add_argument('--toppar', required=True, help='CHARMM parameter directory')
     required.add_argument('--target', required=True, help='Target structure PDB for RMSD calculation')
-    required.add_argument('--basis-coor', required=True, help='Equilibrated .coor file for basis state')
-    required.add_argument('--basis-vel', required=True, help='Equilibrated .vel file for basis state')
-    required.add_argument('--basis-xsc', required=True, help='Equilibrated .xsc file for basis state')
     required.add_argument('--output-dir', required=True, help='Output directory for WESTPA simulation')
+    
+    # Optional basis state inputs (if not provided, init.sh will run equilibration)
+    basis = parser.add_argument_group('Basis State Inputs (Optional - auto-equilibration if not provided)')
+    basis.add_argument('--basis-coor', default=None, help='Equilibrated .coor file for basis state')
+    basis.add_argument('--basis-vel', default=None, help='Equilibrated .vel file for basis state')
+    basis.add_argument('--basis-xsc', default=None, help='Equilibrated .xsc file for basis state')
     
     # WESTPA settings
     westpa = parser.add_argument_group('WESTPA Settings')
@@ -130,17 +135,26 @@ def validate_inputs(args):
     """Validate that all input files exist."""
     errors = []
     
+    # Check required files
     for arg_name, path in [
         ('pdb', args.pdb),
         ('psf', args.psf),
         ('toppar', args.toppar),
         ('target', args.target),
-        ('basis-coor', args.basis_coor),
-        ('basis-vel', args.basis_vel),
-        ('basis-xsc', args.basis_xsc),
     ]:
         if not os.path.exists(path):
             errors.append(f"  --{arg_name}: '{path}' does not exist")
+    
+    # Check optional basis files only if provided
+    basis_provided = all([args.basis_coor, args.basis_vel, args.basis_xsc])
+    if args.basis_coor or args.basis_vel or args.basis_xsc:
+        for arg_name, path in [
+            ('basis-coor', args.basis_coor),
+            ('basis-vel', args.basis_vel),
+            ('basis-xsc', args.basis_xsc),
+        ]:
+            if path and not os.path.exists(path):
+                errors.append(f"  --{arg_name}: '{path}' does not exist")
     
     if errors:
         print("ERROR: The following input files/directories were not found:")
@@ -148,15 +162,20 @@ def validate_inputs(args):
             print(e)
         sys.exit(1)
     
-    # Important warning about PDB vs COOR geometry
+    # Warning about basis state
     print("\n" + "=" * 60)
-    print("IMPORTANT: PDB and Basis State Geometry")
-    print("=" * 60)
-    print("WARNING: The pipeline uses --pdb to calculate the initial RMSD.")
-    print("         Ensure --pdb and --basis-coor have the SAME geometry.")
-    print("         If they differ (e.g., PDB is crystal structure, COOR is")
-    print("         equilibrated), you will see pcoord discontinuities in")
-    print("         iteration 1, which can affect flux calculations.")
+    if basis_provided:
+        print("IMPORTANT: PDB and Basis State Geometry")
+        print("=" * 60)
+        print("WARNING: The pipeline uses --pdb to calculate the initial RMSD.")
+        print("         Ensure --pdb and --basis-coor have the SAME geometry.")
+        print("         If they differ, you may see pcoord discontinuities.")
+    else:
+        print("AUTO-EQUILIBRATION MODE")
+        print("=" * 60)
+        print("INFO: No basis state files provided (--basis-coor/vel/xsc).")
+        print("      init.sh will automatically run a short equilibration")
+        print("      to prepare the basis state from your PDB structure.")
     print("=" * 60 + "\n")
     
     # Check output directory
@@ -290,6 +309,17 @@ cellOrigin {cx} {cy} {cz}"""
         # Save it to file for reference
         with open(common / 'box_size.txt', 'w') as f:
             f.write(box_params['content'])
+    
+    # Copy basis state files if provided (otherwise init.sh will run equilibration)
+    if args.basis_coor and args.basis_vel and args.basis_xsc:
+        bstates = base / 'bstates' / 'eq0'
+        bstates.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(args.basis_coor, bstates / 'seg.coor')
+        shutil.copy2(args.basis_vel, bstates / 'seg.vel')
+        shutil.copy2(args.basis_xsc, bstates / 'seg.xsc')
+        print("   Copied basis state files to bstates/eq0/")
+    else:
+        print("   Basis state not provided - init.sh will run auto-equilibration")
     
     return {
         'pdb_name': pdb_name,

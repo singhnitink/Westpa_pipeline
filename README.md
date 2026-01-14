@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-### 1. Basic RMSD Simulation
+### 1. Basic RMSD Simulation (with Box Parameters)
 Set up a simulation using RMSD of the protein backbone as the progress coordinate.
 
 ```bash
@@ -44,16 +44,27 @@ python setup_westpa.py \
     --psf common/system.psf \
     --toppar common/toppar/ \
     --target common/target.pdb \
-    --basis-coor eq_files/final.coor \
-    --basis-vel eq_files/final.vel \
-    --basis-xsc eq_files/final.xsc \
+    --box-file common/box_size.txt \
     --output-dir my_sim_01 \
     --pcoord-type rmsd \
     --pcoord-sel "name CA" \
     --walkers 8 --iterations 100
 ```
 
-### 2. "Auto-Pilot" with MAB (Adaptive Binning)
+**Note:** `init.sh` will automatically run equilibration and create basis states if not provided.
+
+### 2. With Pre-Equilibrated Basis State
+If you have already equilibrated your system:
+
+```bash
+python setup_westpa.py \
+    --pdb system.pdb --psf system.psf --toppar ./toppar \
+    --target target.pdb \
+    --box-size 122.95 122.95 102.90 --box-center 0.16 -0.04 0.78 \
+    --output-dir my_sim_01
+```
+
+### 3. "Auto-Pilot" with MAB (Adaptive Binning)
 Don't know your bin boundaries? Use `--adaptive-bins` (MAB) to let WESTPA figure it out.
 
 ```bash
