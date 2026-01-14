@@ -23,6 +23,141 @@ import shutil
 from pathlib import Path
 import json
 
+# MDTraj for auto-RMSD calculation (optional - graceful fallback if not installed)
+try:
+    import mdtraj as md
+    import numpy as np
+    MDTRAJ_AVAILABLE = True
+except ImportError:
+    MDTRAJ_AVAILABLE = False
+
+
+def calculate_initial_pcoord(pdb_path, target_path, pcoord_type, selection, ref_selection=None):
+    """
+    Calculate progress coordinate values for starting structure (PDB) and target structure.
+    Returns a tuple: (start_value, target_value) in appropriate units.
+    Used to auto-determine bin boundaries.
+    """
+    if not MDTRAJ_AVAILABLE:
+        print(f"WARNING: MDTraj not available. Cannot auto-calculate {pcoord_type}.")
+        return None, None
+    
+    try:
+        # Load structures
+        start = md.load(pdb_path)
+        target = md.load(target_path)
+        
+        if pcoord_type == 'rmsd':
+            # Calculate RMSD of start structure vs target
+            start_indices = start.topology.select(selection)
+            target_indices = target.topology.select(selection)
+            
+            if len(start_indices) == 0 or len(target_indices) == 0:
+                return None, None
+            
+            # Map by residue sequence number
+            start_res_map = {r.resSeq: a.index for r in start.topology.residues 
+                             for a in r.atoms if a.index in set(start_indices)}
+            target_res_map = {r.resSeq: a.index for r in target.topology.residues 
+                              for a in r.atoms if a.index in set(target_indices)}
+            
+            common_res = sorted(set(start_res_map.keys()) & set(target_res_map.keys()))
+            if not common_res:
+                return None, None
+            
+            start_atom_indices = [start_res_map[r] for r in common_res]
+            target_atom_indices = [target_res_map[r] for r in common_res]
+            
+            start.superpose(target, atom_indices=start_atom_indices, ref_atom_indices=target_atom_indices)
+            rmsd_nm = md.rmsd(start, target, atom_indices=start_atom_indices, ref_atom_indices=target_atom_indices)
+            
+            # Start RMSD from target, target RMSD from target = 0
+            return float(rmsd_nm[0] * 10.0), 0.0  # Angstroms
+        
+        elif pcoord_type == 'distance':
+            # Center of mass distance between two groups
+            if not ref_selection:
+                return None, None
+            
+            # Helper function to compute COM manually (compatible with all MDTraj versions)
+            def compute_com(traj, atom_indices):
+                """Compute center of mass for selected atoms."""
+                masses = np.array([a.element.mass for a in traj.topology.atoms if a.index in set(atom_indices)])
+                coords = traj.xyz[0, atom_indices, :]  # (n_atoms, 3)
+                com = np.sum(coords * masses[:, np.newaxis], axis=0) / np.sum(masses)
+                return com
+            
+            # Get atom indices
+            indices1_start = start.topology.select(selection)
+            indices2_start = start.topology.select(ref_selection)
+            indices1_target = target.topology.select(selection)
+            indices2_target = target.topology.select(ref_selection)
+            
+            if len(indices1_start) == 0 or len(indices2_start) == 0:
+                return None, None
+            
+            # Calculate COM distance for start structure
+            com1_start = compute_com(start, indices1_start)
+            com2_start = compute_com(start, indices2_start)
+            dist_start = float(np.linalg.norm(com1_start - com2_start) * 10.0)  # Angstroms
+            
+            # Calculate COM distance for target structure
+            com1_target = compute_com(target, indices1_target)
+            com2_target = compute_com(target, indices2_target)
+            dist_target = float(np.linalg.norm(com1_target - com2_target) * 10.0)  # Angstroms
+            
+            return dist_start, dist_target
+        
+        elif pcoord_type == 'rog':
+            # Radius of gyration
+            indices_start = start.topology.select(selection)
+            indices_target = target.topology.select(selection)
+            
+            if len(indices_start) == 0 or len(indices_target) == 0:
+                return None, None
+            
+            rg_start = float(md.compute_rg(start, atom_indices=indices_start)[0] * 10.0)  # Angstroms
+            rg_target = float(md.compute_rg(target, atom_indices=indices_target)[0] * 10.0)
+            
+            return rg_start, rg_target
+        
+        elif pcoord_type == 'sasa':
+            # Solvent accessible surface area
+            indices_start = start.topology.select(selection)
+            indices_target = target.topology.select(selection)
+            
+            if len(indices_start) == 0 or len(indices_target) == 0:
+                return None, None
+            
+            sasa_start = float(np.sum(md.shrake_rupley(start, atom_indices=indices_start)) * 100.0)  # Å²
+            sasa_target = float(np.sum(md.shrake_rupley(target, atom_indices=indices_target)) * 100.0)
+            
+            return sasa_start, sasa_target
+        
+        elif pcoord_type == 'dihedral':
+            # Dihedral angle (expects exactly 4 atoms)
+            indices_start = start.topology.select(selection)
+            indices_target = target.topology.select(selection)
+            
+            if len(indices_start) != 4:
+                print(f"WARNING: Dihedral requires exactly 4 atoms, found {len(indices_start)}")
+                return None, None
+            if len(indices_target) != 4:
+                print(f"WARNING: Dihedral requires exactly 4 atoms in target, found {len(indices_target)}")
+                return None, None
+            
+            dih_start = float(np.degrees(md.compute_dihedrals(start, indices_start.reshape(1, 4))[0, 0]))
+            dih_target = float(np.degrees(md.compute_dihedrals(target, indices_target.reshape(1, 4))[0, 0]))
+            
+            return dih_start, dih_target
+        
+        else:
+            return None, None
+        
+    except Exception as e:
+        print(f"WARNING: Could not calculate initial {pcoord_type}: {e}")
+        return None, None
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -235,15 +370,55 @@ def calculate_parameters(args):
         print(f"       This would produce 0 DCD frames. Decrease --dcdfreq or increase --segment-ps.")
         sys.exit(1)
     
-    # Map legacy arguments to new generic ones if not provided
+    # Determine bin boundaries
     val_min = args.pcoord_val_min if args.pcoord_val_min is not None else args.rmsd_target
     val_max = args.pcoord_val_max if args.pcoord_val_max is not None else args.rmsd_max
     
-    # Adjust for target direction:
-    # If using RMSD, we usually go from High -> Low (Target 0).
-    # But WESTPA bins are typically left-to-right.
-    # We will assume a simple rectilinear grid from val_min to val_max
+    # Auto-calculate initial pcoord if not manually specified
+    auto_calculated = False
+    if args.pcoord_val_min is None or args.pcoord_val_max is None:
+        start_val, target_val = calculate_initial_pcoord(
+            args.pdb, args.target, args.pcoord_type, 
+            args.pcoord_sel, args.pcoord_ref
+        )
+        
+        if start_val is not None and target_val is not None:
+            # Determine appropriate buffer based on pcoord type
+            if args.pcoord_type == 'rmsd':
+                buffer = 1.0  # 1 Å buffer
+                unit = "Å"
+            elif args.pcoord_type == 'distance':
+                buffer = 2.0  # 2 Å buffer
+                unit = "Å"
+            elif args.pcoord_type == 'rog':
+                buffer = 1.0  # 1 Å buffer
+                unit = "Å"
+            elif args.pcoord_type == 'sasa':
+                buffer = max(50.0, abs(start_val - target_val) * 0.1)  # 10% buffer or 50 Å²
+                unit = "Ų"
+            elif args.pcoord_type == 'dihedral':
+                buffer = 10.0  # 10° buffer
+                unit = "°"
+            else:
+                buffer = abs(start_val - target_val) * 0.1
+                unit = ""
+            
+            # Set min/max based on start and target values
+            if args.pcoord_val_min is None:
+                val_min = round(min(start_val, target_val) - buffer, 2)
+                if val_min < 0 and args.pcoord_type != 'dihedral':
+                    val_min = 0.0  # Most metrics can't be negative
+            if args.pcoord_val_max is None:
+                val_max = round(max(start_val, target_val) + buffer, 2)
+            
+            auto_calculated = True
+            print(f"\n   AUTO-CALCULATED {args.pcoord_type.upper()}:")
+            print(f"   Starting structure: {start_val:.2f} {unit}")
+            print(f"   Target structure:   {target_val:.2f} {unit}")
+            print(f"   Bin range set to:   {val_min:.2f} - {val_max:.2f} {unit}")
+            print(f"   (Override with --pcoord-val-min/max if needed)\n")
     
+    # Adjust if min > max
     if val_min > val_max:
         val_min, val_max = val_max, val_min
     
