@@ -100,6 +100,17 @@ This will create a complete WESTPA simulation directory ready to run.
     namd.add_argument('--max-run-wallclock', default='48:00:00',
                       help='Maximum wallclock time (default: 48:00:00)')
     
+    # Box parameters
+    box = parser.add_argument_group('Periodic Box Settings')
+    box.add_argument('--box-file', type=str, default=None,
+                     help='File with box parameters (cellBasisVector1/2/3, cellOrigin)')
+    box.add_argument('--box-size', type=float, nargs=3, default=[100.0, 100.0, 100.0],
+                     metavar=('X', 'Y', 'Z'),
+                     help='Box dimensions in Angstroms (default: 100 100 100)')
+    box.add_argument('--box-center', type=float, nargs=3, default=[0.0, 0.0, 0.0],
+                     metavar=('X', 'Y', 'Z'),
+                     help='Box center coordinates (default: 0 0 0)')
+    
     # Runtime settings
     runtime = parser.add_argument_group('Runtime Settings')
     runtime.add_argument('--n-workers', type=int, default=4, 
@@ -261,15 +272,30 @@ def copy_input_files(args, base):
     else:
         shutil.copy2(args.toppar, toppar_dest)
     
-    # Copy basis state files
-    shutil.copy2(args.basis_coor, bstates / 'seg.coor')
-    shutil.copy2(args.basis_vel, bstates / 'seg.vel')
-    shutil.copy2(args.basis_xsc, bstates / 'seg.xsc')
+    # Handle box parameters
+    box_params = {}
+    if args.box_file and os.path.exists(args.box_file):
+        # Copy box file and parse it
+        shutil.copy2(args.box_file, common / 'box_size.txt')
+        with open(args.box_file, 'r') as f:
+            box_params['content'] = f.read().strip()
+    else:
+        # Use command-line box parameters
+        box_x, box_y, box_z = args.box_size
+        cx, cy, cz = args.box_center
+        box_params['content'] = f"""cellBasisVector1 {box_x} 0 0
+cellBasisVector2 0 {box_y} 0
+cellBasisVector3 0 0 {box_z}
+cellOrigin {cx} {cy} {cz}"""
+        # Save it to file for reference
+        with open(common / 'box_size.txt', 'w') as f:
+            f.write(box_params['content'])
     
     return {
         'pdb_name': pdb_name,
         'psf_name': psf_name,
         'target_name': target_name,
+        'box_params': box_params['content'],
     }
 
 
@@ -444,7 +470,9 @@ useConstantRatio                  yes
 useFlexibleCell                   yes
 
 # GPU settings (NAMD 3.0+ only)
-{"GPUresident on" if args.namd_gpu >= 0 and 'namd3' in args.namd_exe.lower() else "# GPUresident off (CPU mode or NAMD2)"}
+# GPUresident mode is disabled by default for compatibility with protein-only systems.
+# Enable it for solvated systems with NAMD 3.0+ for better performance:
+#GPUresident on
 
 # Segment length: {args.segment_ps} ps
 run {params['segment_steps']}
@@ -504,35 +532,56 @@ rm -f md.in seg.restart.* parent.*
     os.chmod(script_path, 0o755)
 
 
-def generate_calc_pcoord_py(base, args):
+def generate_calc_pcoord_py(base, args, params):
     """Generate the calc_pcoord.py script dynamically based on metric."""
     
-    header = '''#!/usr/bin/env python3
-"""Calculate progress coordinate for WESTPA."""
+    pcoord_len = params['pcoord_len']
+    
+    header = f'''#!/usr/bin/env python3
+"""Calculate progress coordinate for WESTPA.
+
+Usage:
+    python calc_pcoord.py <topology> <reference> <trajectory> <output> [--last-only]
+    
+    --last-only: Output only the last frame (for basis state initialization)
+    Without flag: Output pcoord_len values (for segment propagation)
+"""
 
 import mdtraj as md
 import sys
 import numpy as np
 
-# Usage: python calc_pcoord.py <topology_pdb> <reference_pdb> <trajectory_file> <output_file>
+# PCOORD_LEN must match west.cfg pcoord_len
+PCOORD_LEN = {pcoord_len}
 
 if len(sys.argv) < 5:
-    print("Usage: python calc_pcoord.py <topology_pdb> <reference_pdb> <trajectory_file> <output_file>")
+    print("Usage: python calc_pcoord.py <topology> <reference> <trajectory> <output> [--last-only]")
     sys.exit(1)
 
 top_file = sys.argv[1]
-ref_file = sys.argv[2]  # May act as 2nd structure or just reference
+ref_file = sys.argv[2]
 traj_file = sys.argv[3]
 out_file = sys.argv[4]
+last_only = len(sys.argv) > 5 and sys.argv[5] == "--last-only"
+
+print(f"Loading topology: {{top_file}}")
+print(f"Loading reference: {{ref_file}}")
+print(f"Loading trajectory: {{traj_file}}")
+print(f"Mode: {{\'last-only\' if last_only else \'full (pcoord_len=\' + str(PCOORD_LEN) + \')\'}}")  
 
 try:
-    # Load reference/topology
+    # Load reference
     ref = md.load(ref_file)
     
-    # Load trajectory
-    traj = md.load(traj_file, top=top_file)
+    # Load trajectory - if last_only, load only the last frame for efficiency
+    if last_only:
+        n_frames = len(md.open(traj_file))
+        traj = md.load(traj_file, top=top_file, frame=n_frames-1)
+        print(f"Loaded only frame {{n_frames}} (last frame)")
+    else:
+        traj = md.load(traj_file, top=top_file)
 except Exception as e:
-    print(f"Error loading files: {e}")
+    print(f"Error loading files: {{e}}")
     sys.exit(1)
 
 pcoord_values = []
@@ -569,9 +618,13 @@ try:
     is_backbone = "name CA" in pcoord_sel or "name C" in pcoord_sel or "name N" in pcoord_sel
     
     if is_backbone:
-        # Robust mapping for proteins
-        ref_res_map = {{r.resSeq: a.index for r in ref.topology.residues for a in r.atoms if a.isInSelection(ref_indices)}}
-        traj_res_map = {{r.resSeq: a.index for r in traj.topology.residues for a in r.atoms if a.isInSelection(traj_indices)}}
+        # Robust mapping for proteins - map residue sequence number to atom index
+        # Only include atoms that are in our selection
+        ref_indices_set = set(ref_indices)
+        traj_indices_set = set(traj_indices)
+        
+        ref_res_map = {{r.resSeq: a.index for r in ref.topology.residues for a in r.atoms if a.index in ref_indices_set}}
+        traj_res_map = {{r.resSeq: a.index for r in traj.topology.residues for a in r.atoms if a.index in traj_indices_set}}
         
         common_res = sorted(set(ref_res_map.keys()) & set(traj_res_map.keys()))
         if not common_res:
@@ -711,10 +764,24 @@ except Exception as e:
 
     footer = '''
 print(f"Calculated pcoord for {len(pcoord_values)} frames.")
-print(f"Range: {pcoord_values.min():.2f} - {pcoord_values.max():.2f}")
+print(f"First: {pcoord_values[0]:.4f}, Last: {pcoord_values[-1]:.4f}")
 
-# Save to file
-np.savetxt(out_file, pcoord_values)
+# Output based on mode
+if last_only:
+    # For basis state initialization - output only last frame
+    output_values = [pcoord_values[-1]]
+else:
+    # For segment propagation - output exactly PCOORD_LEN values
+    if len(pcoord_values) >= PCOORD_LEN:
+        output_values = pcoord_values[-PCOORD_LEN:]
+    else:
+        # Pad with the last value
+        padding_needed = PCOORD_LEN - len(pcoord_values)
+        padding = np.full(padding_needed, pcoord_values[-1])
+        output_values = np.concatenate([pcoord_values, padding])
+
+print(f"Writing {len(output_values)} values to output file.")
+np.savetxt(out_file, output_values)
 '''
     content = header + logic + footer
     
@@ -766,8 +833,7 @@ def generate_get_pcoord_sh(args, files, base):
     content = f"""#!/bin/bash
 
 # Get initial progress coordinate for basis states
-# We use the generated calc_pcoord.py to ensure consistency with the chosen metric.
-# The basis state structure (PDB) serves as the "trajectory" (1 frame).
+# Uses --last-only flag to output only 1 value for initialization
 
 if [ -n "$SEG_DEBUG" ] ; then
   set -x
@@ -776,29 +842,29 @@ fi
 
 cd $WEST_SIM_ROOT
 
-# Create a temporary directory
-TMPDIR=$(mktemp -d)
-cd $TMPDIR
+# Determine input file from basis state directory
+# WEST_STRUCT_DATA_REF points to the basis state directory (e.g., bstates/eq0)
+if [ -d "$WEST_STRUCT_DATA_REF" ]; then
+    # Prefer seg.dcd if available (has trajectory data)
+    if [ -f "$WEST_STRUCT_DATA_REF/seg.dcd" ]; then
+        INPUT="$WEST_STRUCT_DATA_REF/seg.dcd"
+    else
+        # Fallback to PDB if no DCD
+        INPUT="$WEST_SIM_ROOT/common_files/{files['pdb_name']}"
+    fi
+else
+    # Direct file reference
+    INPUT="$WEST_STRUCT_DATA_REF"
+fi
 
-# Link files
-ln -s $WEST_SIM_ROOT/common_files/{files['pdb_name']} .
-ln -s $WEST_SIM_ROOT/common_files/{files['target_name']} .
-
-# Run calc_pcoord.py
-# Input 1: Topology (System PDB)
-# Input 2: Reference (Target PDB) - used for RMSD, ignored for others
-# Input 3: Trajectory (System PDB) - treating the start structure as a 1-frame traj
-# Input 4: Output File
-
+# Run calc_pcoord.py with --last-only flag for basis state initialization
+# This outputs only 1 value (the final pcoord) as required by WESTPA init
 python $WEST_SIM_ROOT/westpa_scripts/calc_pcoord.py \\
-    {files['pdb_name']} \\
-    {files['target_name']} \\
-    {files['pdb_name']} \\
-    $WEST_PCOORD_RETURN
-
-# Cleanup
-cd $WEST_SIM_ROOT
-rm -rf $TMPDIR
+    $WEST_SIM_ROOT/common_files/{files['pdb_name']} \\
+    $WEST_SIM_ROOT/common_files/{files['target_name']} \\
+    $INPUT \\
+    $WEST_PCOORD_RETURN \\
+    --last-only
 """
     
     script_path = base / 'westpa_scripts' / 'get_pcoord.sh'
@@ -807,8 +873,13 @@ rm -rf $TMPDIR
     os.chmod(script_path, 0o755)
 
 
-def generate_helper_scripts(args, base):
+def generate_helper_scripts(args, params, files, base):
     """Generate env.sh, init.sh, run.sh, clean.sh."""
+    
+    # Determine NAMD executable settings
+    namd_exe = args.namd_exe
+    gpu_option = f"+devices 0" if args.namd_gpu >= 0 else ""
+    cpu_option = f"+p{args.namd_threads}" if args.namd_threads > 0 else "+p2"
     
     # env.sh
     env_content = f"""#!/bin/bash
@@ -823,17 +894,146 @@ export WM_ZMQ_TIMEOUT=1000
         f.write(env_content)
     os.chmod(base / 'env.sh', 0o755)
     
-    # init.sh
-    init_content = """#!/bin/bash
+    # init.sh with auto-equilibration
+    init_content = f"""#!/bin/bash
 source env.sh
 
-# Remove old simulation data if present
-rm -rf traj_segs seg_logs istates west.h5 west.log
+echo "=============================================="
+echo "WESTPA Initialization with Auto-Equilibration"
+echo "=============================================="
+
+# Create required directories
+mkdir -p seg_logs traj_segs istates bstates/eq0
+
+# Check if equilibration is needed
+if [ ! -f "bstates/eq0/seg.coor" ]; then
+    echo ""
+    echo "Step 1: Running equilibration to prepare basis state..."
+    echo "        This may take a few minutes."
+    
+    cd bstates/eq0
+    
+    # Link required files
+    ln -sf $WEST_SIM_ROOT/common_files/{files['psf_name']} .
+    ln -sf $WEST_SIM_ROOT/common_files/{files['pdb_name']} .
+    ln -sf $WEST_SIM_ROOT/common_files/toppar .
+    
+    # Create equilibration config
+    cat > eq.conf << 'EQCONF'
+# Equilibration configuration for WESTPA basis state
+# Auto-generated - runs minimization + short equilibration
+
+set temperature {args.temperature}
+set outputname seg
+
+# Input files
+structure       {files['psf_name']}
+coordinates     {files['pdb_name']}
+
+# Force-Field Parameters
+paraTypeCharmm      on
+set toppar_dict "toppar/"
+parameters          ${{toppar_dict}}/par_all36m_prot.prm
+parameters          ${{toppar_dict}}/par_all36_carb.prm
+parameters          ${{toppar_dict}}/par_all36_na.prm
+parameters          ${{toppar_dict}}/par_all36_cgenff.prm
+parameters          ${{toppar_dict}}/par_all36_lipid.prm
+parameters          ${{toppar_dict}}/toppar_water_ions.str
+
+1-4scaling          1.0
+exclude             scaled1-4
+
+# No restart files - fresh start
+temperature         $temperature
+
+# Periodic box parameters from box_size.txt
+{files['box_params']}
+
+# Output options
+outputname          $outputname
+binaryoutput        yes
+binaryrestart       yes
+outputEnergies      500
+outputTiming        1000
+restartfreq         {params['segment_steps']}
+dcdfreq             {args.dcdfreq}
+
+# Simulation settings
+dielectric          1.0
+switching           on
+vdwForceSwitching   on
+LJCorrection        on
+switchdist          10
+cutoff              12
+pairlistdist        14
+rigidbonds          all
+margin              8
+timestep            {args.timestep}
+stepspercycle       200
+fullElectFrequency  2
+PME                 on
+PMEGridSpacing      1.0
+
+# Thermostat
+langevin            on
+langevinTemp        $temperature
+langevinSeed        12345
+langevinHydrogen    no
+langevinDamping     1.0
+
+# Barostat (disabled for protein-only)
+#LangevinPiston      on
+#LangevinPistonTarget 1.01325
+#LangevinPistonPeriod 200
+#LangevinPistonDecay  100
+#LangevinPistonTemp   $temperature
+
+# Run equilibration: minimize then dynamics
+minimize 5000
+reinitvels $temperature
+run {params['segment_steps']}
+EQCONF
+    
+    # Run equilibration with NAMD
+    echo "Running NAMD equilibration..."
+    {namd_exe} {cpu_option} {gpu_option} eq.conf > eq.log 2>&1
+    
+    if [ $? -ne 0 ]; then
+        echo "ERROR: NAMD equilibration failed! Check bstates/eq0/eq.log"
+        cd $WEST_SIM_ROOT
+        exit 1
+    fi
+    
+    echo "Equilibration complete."
+    cd $WEST_SIM_ROOT
+else
+    echo ""
+    echo "Step 1: Basis state already exists in bstates/eq0/"
+    echo "        Skipping equilibration."
+fi
+
+# Generate bstates.txt if missing
+if [ ! -f "bstates/bstates.txt" ]; then
+    echo ""
+    echo "Step 2: Creating bstates.txt..."
+    echo "0 1.0 eq0" > bstates/bstates.txt
+fi
+
+# Clean old simulation data
+echo ""
+echo "Step 3: Cleaning old simulation data..."
+rm -rf traj_segs/* seg_logs/* istates/* west.h5 west.log
 
 # Initialize WESTPA
-w_init --bstates-from bstates/bstates.txt --tstate-file tstate.file --segs-per-state 1 --work-manager=threads
+echo ""
+echo "Step 4: Initializing WESTPA..."
+w_init --bstates-from bstates/bstates.txt --tstate-file tstate.file --segs-per-state {args.walkers} --work-manager=threads
 
-echo "Initialization complete. Run './run.sh' to start the simulation."
+echo ""
+echo "=============================================="
+echo "Initialization complete!"
+echo "Run './run.sh' to start the simulation."
+echo "=============================================="
 """
     with open(base / 'init.sh', 'w') as f:
         f.write(init_content)
@@ -1384,10 +1584,10 @@ def main():
     generate_west_cfg(args, params, base)
     generate_md_conf(args, params, files, base)
     generate_runseg_sh(args, files, base)
-    generate_calc_pcoord_py(base, args)
+    generate_calc_pcoord_py(base, args, params)
     generate_gen_istate_sh(base)
     generate_get_pcoord_sh(args, files, base)
-    generate_helper_scripts(args, base)
+    generate_helper_scripts(args, params, files, base)
     generate_tstate_bstate_files(args, base)
     generate_analysis_scripts(base)
     generate_alt_analysis_script(base, args)
