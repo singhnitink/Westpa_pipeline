@@ -1,0 +1,42 @@
+Updating system with the options from the configuration file
+Maximum wallclock time: 2 days, 2:00:00
+
+Thu Jan  8 14:48:04 2026
+Iteration 1 (500 requested)
+Beginning iteration 1
+8 segments remain in iteration 1 (8 total)
+1 of 36 (2.777778%) active bins are populated
+per-bin minimum non-zero probability:       1
+per-bin maximum probability:                1
+per-bin probability dynamic range (kT):     0
+per-segment minimum non-zero probability:   0.125
+per-segment maximum non-zero probability:   0.125
+per-segment probability dynamic range (kT): 0
+norm = 1, error in norm = 0 (0*epsilon)
+Waiting for segments to complete...
+-- ERROR    [westpa.core.propagators.executable] -- could not read pcoord for Segment 0 from '/tmp/tmplghhtoh6': ValueError('cannot reshape array of size 1 into shape (100,1)')
+-- ERROR    [westpa.core.propagators.executable] -- could not read pcoord for Segment 1 from '/tmp/tmppya23uip': ValueError('cannot reshape array of size 1 into shape (100,1)')
+-- ERROR    [westpa.core.propagators.executable] -- could not read pcoord for Segment 2 from '/tmp/tmpej_2r7db': ValueError('cannot reshape array of size 1 into shape (100,1)')
+-- ERROR    [westpa.core.propagators.executable] -- could not read pcoord for Segment 3 from '/tmp/tmpvm_xpavm': ValueError('cannot reshape array of size 1 into shape (100,1)')
+-- ERROR    [westpa.core.propagators.executable] -- could not read pcoord for Segment 4 from '/tmp/tmpkjxxidvz': ValueError('cannot reshape array of size 1 into shape (100,1)')
+-- ERROR    [westpa.core.propagators.executable] -- could not read pcoord for Segment 5 from '/tmp/tmpla3k4nij': ValueError('cannot reshape array of size 1 into shape (100,1)')
+-- ERROR    [westpa.core.propagators.executable] -- could not read pcoord for Segment 6 from '/tmp/tmp0tiknshm': ValueError('cannot reshape array of size 1 into shape (100,1)')
+-- ERROR    [westpa.core.propagators.executable] -- could not read pcoord for Segment 7 from '/tmp/tmpwgsw56bc': ValueError('cannot reshape array of size 1 into shape (100,1)')
+exception caught; shutting down
+-- ERROR    [w_run] -- error message: coordinate value 0.0 is out of bin space in dimension 0
+-- ERROR    [w_run] -- Traceback (most recent call last):
+  File "/home/nsingh/anaconda3/envs/westpa/lib/python3.11/site-packages/westpa/cli/core/w_run.py", line 61, in run_simulation
+    sim_manager.run()
+  File "/home/nsingh/anaconda3/envs/westpa/lib/python3.11/site-packages/westpa/core/sim_manager.py", line 767, in run
+    self.propagate()
+  File "/home/nsingh/anaconda3/envs/westpa/lib/python3.11/site-packages/westpa/core/sim_manager.py", line 618, in propagate
+    self.we_driver.assign(incoming)
+  File "/home/nsingh/anaconda3/envs/westpa/lib/python3.11/site-packages/westpa/core/we_driver.py", line 350, in assign
+    final_assignments = self.bin_mapper.assign(all_pcoords[1, :, :])
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nsingh/anaconda3/envs/westpa/lib/python3.11/site-packages/westpa/core/binning/assign.py", line 180, in assign
+    rectilinear_assign(coords, mask, output, self.boundaries, self._boundlens)
+  File "src/westpa/core/binning/_assign.pyx", line 26, in westpa.core.binning._assign.rectilinear_assign
+  File "src/westpa/core/binning/_assign.pyx", line 81, in westpa.core.binning._assign.rectilinear_assign
+ValueError: coordinate value 0.0 is out of bin space in dimension 0
+

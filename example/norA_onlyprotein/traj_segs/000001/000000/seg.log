@@ -1,0 +1,815 @@
+Charm++: standalone mode (not using charmrun)
+Charm++> Running in Multicore mode: 20 threads (PEs)
+Charm++> Using recursive bisection (scheme 3) for topology aware partitions
+Converse/Charm++ Commit ID: v6.10.2-0-g7bf00fa-namd-charm-6.10.2-build-2020-Aug-05-556
+Warning> Randomization of virtual memory (ASLR) is turned on in the kernel, thread migration may not work! Run 'echo 0 > /proc/sys/kernel/randomize_va_space' as root to disable it, or try running with '+isomalloc_sync'.
+CharmLB> Load balancer assumes all CPUs are same.
+Charm++> Running on 1 hosts (1 sockets x 16 cores x 2 PUs = 32-way SMP)
+Charm++> cpu topology info is gathered in 0.000 seconds.
+Info: Built with CUDA version 11080
+Did not find +devices i,j,k,... argument, using all
+Pe 0 physical rank 0 will use CUDA device of pe 16
+Pe 19 physical rank 19 will use CUDA device of pe 16
+Pe 4 physical rank 4 will use CUDA device of pe 16
+Pe 6 physical rank 6 will use CUDA device of pe 16
+Pe 1 physical rank 1 will use CUDA device of pe 16
+Pe 5 physical rank 5 will use CUDA device of pe 16
+Pe 3 physical rank 3 will use CUDA device of pe 16
+Pe 17 physical rank 17 will use CUDA device of pe 16
+Pe 11 physical rank 11 will use CUDA device of pe 16
+Pe 9 physical rank 9 will use CUDA device of pe 16
+Pe 15 physical rank 15 will use CUDA device of pe 16
+Pe 10 physical rank 10 will use CUDA device of pe 16
+Pe 2 physical rank 2 will use CUDA device of pe 16
+Pe 13 physical rank 13 will use CUDA device of pe 16
+Pe 7 physical rank 7 will use CUDA device of pe 16
+Pe 12 physical rank 12 will use CUDA device of pe 16
+Pe 18 physical rank 18 will use CUDA device of pe 16
+Pe 14 physical rank 14 will use CUDA device of pe 16
+Pe 8 physical rank 8 will use CUDA device of pe 16
+Pe 16 physical rank 16 binding to CUDA device 0 on PRL-VERMAAS-WS9: 'NVIDIA GeForce RTX 4090'  Mem: 24077MB  Rev: 8.9  PCI: 0:1:0
+Info: NAMD 2.14 for Linux-x86_64-multicore-CUDA
+Info: 
+Info: Please visit http://www.ks.uiuc.edu/Research/namd/
+Info: for updates, documentation, and support information.
+Info: 
+Info: Please cite Phillips et al., J. Chem. Phys. 153:044130 (2020) doi:10.1063/5.0014475
+Info: in all publications reporting results obtained with NAMD.
+Info: 
+Info: Based on Charm++/Converse 61002 for multicore-linux-x86_64
+Info: Built Mon Dec 19 03:29:39 PM EST 2022 by josh on PRL-VERMAAS-WS6
+Info: 1 NAMD  2.14  Linux-x86_64-multicore-CUDA  20    PRL-VERMAAS-WS9  nitin
+Info: Running on 20 processors, 1 nodes, 1 physical nodes.
+Info: CPU topology information available.
+Info: Charm++/Converse parallel runtime startup completed at 0.160183 s
+CkLoopLib is used in SMP with simple dynamic scheduling (converse-level notification)
+Info: 109.25 MB of memory in use based on /proc/self/stat
+Info: Configuration file is md.in
+Info: Working in the current directory /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/traj_segs/000001/000000
+TCL: Suspending until startup complete.
+Info: EXTENDED SYSTEM FILE   parent.xsc
+Info: SIMULATION PARAMETERS:
+Info: TIMESTEP               2
+Info: NUMBER OF STEPS        0
+Info: STEPS PER CYCLE        200
+Info: PERIODIC CELL BASIS 1  100 0 0
+Info: PERIODIC CELL BASIS 2  0 100 0
+Info: PERIODIC CELL BASIS 3  0 0 100
+Info: PERIODIC CELL CENTER   0.16 -0.04 0
+Info: LOAD BALANCER  Centralized
+Info: LOAD BALANCING STRATEGY  New Load Balancers -- DEFAULT
+Info: LDB PERIOD             40000 steps
+Info: FIRST LDB TIMESTEP     1000
+Info: LAST LDB TIMESTEP     -1
+Info: LDB BACKGROUND SCALING 1
+Info: HOM BACKGROUND SCALING 1
+Info: PME BACKGROUND SCALING 1
+Info: MIN ATOMS PER PATCH    40
+Info: VELOCITY FILE          parent.vel
+Info: CENTER OF MASS MOVING INITIALLY? NO
+Info: DIELECTRIC             1
+Info: EXCLUDE                SCALED ONE-FOUR
+Info: 1-4 ELECTROSTATICS SCALED BY 1
+Info: MODIFIED 1-4 VDW PARAMETERS WILL BE USED
+Info: DCD FILENAME           seg.dcd
+Info: DCD FREQUENCY          500
+Info: DCD FIRST STEP         500
+Info: DCD FILE WILL CONTAIN UNIT CELL DATA
+Info: NO EXTENDED SYSTEM TRAJECTORY OUTPUT
+Info: NO VELOCITY DCD OUTPUT
+Info: NO FORCE DCD OUTPUT
+Info: OUTPUT FILENAME        seg
+Info: BINARY OUTPUT FILES WILL BE USED
+Info: RESTART FILENAME       seg.restart
+Info: RESTART FREQUENCY      10000
+Info: BINARY RESTART FILES WILL BE USED
+Info: SWITCHING ACTIVE
+Info: VDW FORCE SWITCHING ACTIVE
+Info: SWITCHING ON           10
+Info: SWITCHING OFF          12
+Info: PAIRLIST DISTANCE      14
+Info: PAIRLIST SHRINK RATE   0.01
+Info: PAIRLIST GROW RATE     0.01
+Info: PAIRLIST TRIGGER       0.3
+Info: PAIRLISTS PER CYCLE    2
+Info: PAIRLISTS ENABLED
+Info: MARGIN                 8
+Warning: MARGIN IS UNUSUALLY LARGE AND WILL LOWER PERFORMANCE
+Warning: MARGIN INCREASED PATCH VOLUME BY A FACTOR OF 3.27376
+Info: HYDROGEN GROUP CUTOFF  2.5
+Info: PATCH DIMENSION        24.5
+Info: ENERGY OUTPUT STEPS    500
+Info: CROSSTERM ENERGY INCLUDED IN DIHEDRAL
+Info: TIMING OUTPUT STEPS    1000
+Info: LANGEVIN DYNAMICS ACTIVE
+Info: LANGEVIN TEMPERATURE   298
+Info: LANGEVIN USING BBK INTEGRATOR
+Info: LANGEVIN DAMPING COEFFICIENT IS 1 INVERSE PS
+Info: LANGEVIN DYNAMICS NOT APPLIED TO HYDROGENS
+Info: PARTICLE MESH EWALD (PME) ACTIVE
+Info: PME TOLERANCE               1e-06
+Info: PME EWALD COEFFICIENT       0.257952
+Info: PME INTERPOLATION ORDER     4
+Info: PME GRID DIMENSIONS         108 108 108
+Info: PME MAXIMUM GRID SPACING    1
+Info: Attempting to read FFTW data from system
+Info: Attempting to read FFTW data from FFTW_NAMD_2.14_Linux-x86_64-multicore-CUDA_FFTW3.txt
+Info: Optimizing 6 FFT steps.  1... 2... 3... 4... 5... 6...   Done.
+Info: Writing FFTW data to FFTW_NAMD_2.14_Linux-x86_64-multicore-CUDA_FFTW3.txt
+Info: FULL ELECTROSTATIC EVALUATION FREQUENCY      2
+Info: USING VERLET I (r-RESPA) MTS SCHEME.
+Info: C1 SPLITTING OF LONG RANGE ELECTROSTATICS
+Info: PLACING ATOMS IN PATCHES BY HYDROGEN GROUPS
+Info: RIGID BONDS TO HYDROGEN : ALL
+Info:         ERROR TOLERANCE : 1e-08
+Info:          MAX ITERATIONS : 100
+Info: RIGID WATER USING SETTLE ALGORITHM
+Info: RANDOM NUMBER SEED     1767901684
+Info: USE HYDROGEN BONDS?    NO
+Info: COORDINATE PDB         ./norA_inopen.pdb
+Info: STRUCTURE FILE         ./norA_inopen.psf
+Info: PARAMETER file: CHARMM format! 
+Info: PARAMETERS             toppar/glc.prm
+Info: PARAMETERS             toppar/cye.prm
+Info: PARAMETERS             toppar/par_all36m_prot.prm
+Info: PARAMETERS             toppar/par_all36_carb.prm
+Info: PARAMETERS             toppar/par_all36_na.prm
+Info: PARAMETERS             toppar/par_all36_cgenff.prm
+Info: PARAMETERS             toppar/par_interface.prm
+Info: PARAMETERS             toppar/par_all36_lipid.prm
+Info: PARAMETERS             toppar/cam.str
+Info: PARAMETERS             toppar/toppar_all36_carb_glycolipid.str
+Info: PARAMETERS             toppar/toppar_all36_carb_glycopeptide.str
+Info: PARAMETERS             toppar/toppar_all36_carb_imlab.str
+Info: PARAMETERS             toppar/toppar_all36_label_fluorophore.str
+Info: PARAMETERS             toppar/toppar_all36_label_spin.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_archaeal.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_bacterial.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_cardiolipin.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_cholesterol.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_dag.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_detergent.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_ether.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_hmmm.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_inositol.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_lnp.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_lps.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_miscellaneous.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_model.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_mycobacterial.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_oxidized.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_prot.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_sphingo.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_tag.str
+Info: PARAMETERS             toppar/toppar_all36_lipid_yeast.str
+Info: PARAMETERS             toppar/toppar_all36_moreions.str
+Info: PARAMETERS             toppar/toppar_all36_na_nad_ppi.str
+Info: PARAMETERS             toppar/toppar_all36_nano_lig_patch.str
+Info: PARAMETERS             toppar/toppar_all36_nano_lig.str
+Info: PARAMETERS             toppar/toppar_all36_na_rna_modified.str
+Info: PARAMETERS             toppar/toppar_all36_polymer_solvent.str
+Info: PARAMETERS             toppar/toppar_all36_prot_arg0.str
+Info: PARAMETERS             toppar/toppar_all36_prot_c36m_d_aminoacids.str
+Info: PARAMETERS             toppar/toppar_all36_prot_fluoro_alkanes.str
+Info: PARAMETERS             toppar/toppar_all36_prot_heme.str
+Info: PARAMETERS             toppar/toppar_all36_prot_model.str
+Info: PARAMETERS             toppar/toppar_all36_prot_modify_res.str
+Info: PARAMETERS             toppar/toppar_all36_prot_na_combined.str
+Info: PARAMETERS             toppar/toppar_all36_prot_retinol.str
+Info: PARAMETERS             toppar/toppar_all36_synthetic_polymer_patch.str
+Info: PARAMETERS             toppar/toppar_all36_synthetic_polymer.str
+Info: PARAMETERS             toppar/toppar_dum_noble_gases.str
+Info: PARAMETERS             toppar/toppar_ions_won.str
+Info: PARAMETERS             toppar/toppar_water_ions.str
+Info: USING ARITHMETIC MEAN TO COMBINE L-J SIGMA PARAMETERS
+Info: BINARY COORDINATES     parent.coor
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Warning: SKIPPING PART OF PARAMETER FILE AFTER RETURN STATEMENT
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+
+Warning: DUPLICATE DIHEDRAL ENTRY FOR CTL2-CG2O5-CTL1-CTL3
+PREVIOUS VALUES MULTIPLICITY: 2
+  k=0.75  n=1  delta=0
+  k=0.18  n=2  delta=180
+INCREASING MULTIPLICITY TO: 3
+  k=0.065  n=3  delta=0
+Info: SKIPPING rtf SECTION IN STREAM FILE
+
+Warning: DUPLICATE BOND ENTRY FOR CEL1-CL
+PREVIOUS VALUES  k=440  x0=1.489
+   USING VALUES  k=300  x0=1.48
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+
+Warning: DUPLICATE DIHEDRAL ENTRY FOR NHL-C-CTO1-HAL1
+PREVIOUS VALUES MULTIPLICITY: 1
+  k=0  n=1  delta=0
+INCREASING MULTIPLICITY TO: 2
+  k=0  n=3  delta=0
+
+Warning: DUPLICATE DIHEDRAL ENTRY FOR O-C-CTO1-HAL1
+PREVIOUS VALUES MULTIPLICITY: 1
+  k=0  n=1  delta=0
+INCREASING MULTIPLICITY TO: 2
+  k=0  n=2  delta=180
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Warning: SKIPPING PART OF PARAMETER FILE AFTER RETURN STATEMENT
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SKIPPING rtf SECTION IN STREAM FILE
+Info: SUMMARY OF PARAMETERS:
+Info: 1988 BONDS
+Info: 6803 ANGLES
+Info: 20090 DIHEDRAL
+Info: 430 IMPROPER
+Info: 28 CROSSTERM
+Info: 751 VDW
+Info: 122 VDW_PAIRS
+Info: 0 NBTHOLE_PAIRS
+Info: TIME FOR READING PSF FILE: 1.92341
+Info: Reading pdb file ./norA_inopen.pdb
+Info: TIME FOR READING PDB FILE: 0.00546655
+Info: 
+Info: LONG-RANGE LJ: APPLYING ANALYTICAL CORRECTIONS TO ENERGY AND PRESSURE
+Info: LONG-RANGE LJ: AVERAGE A AND B COEFFICIENTS 277714 AND 196.726
+Info: ****************************
+Info: STRUCTURE SUMMARY:
+Info: 6078 ATOMS
+Info: 6152 BONDS
+Info: 11169 ANGLES
+Info: 16292 DIHEDRALS
+Info: 932 IMPROPERS
+Info: 385 CROSSTERMS
+Info: 0 EXCLUSIONS
+Info: 3098 RIGID BONDS
+Info: 15136 DEGREES OF FREEDOM
+Info: 2980 HYDROGEN GROUPS
+Info: 4 ATOMS IN LARGEST HYDROGEN GROUP
+Info: 2980 MIGRATION GROUPS
+Info: 4 ATOMS IN LARGEST MIGRATION GROUP
+Info: TOTAL MASS = 42196.7 amu
+Info: TOTAL CHARGE = 4 e
+Info: MASS DENSITY = 0.0700709 g/cm^3
+Info: ATOM DENSITY = 0.006078 atoms/A^3
+Info: *****************************
+Info: Reading from binary file parent.coor
+Info: 
+Info: Entering startup at 3.60222 s, 126.25 MB of memory in use
+Info: Startup phase 0 took 7.8337e-05 s, 126.25 MB of memory in use
+Info: ADDED 33342 IMPLICIT EXCLUSIONS
+Info: Startup phase 1 took 0.00256766 s, 126.25 MB of memory in use
+Info: NONBONDED TABLE R-SQUARED SPACING: 0.0625
+Info: NONBONDED TABLE SIZE: 769 POINTS
+Info: INCONSISTENCY IN FAST TABLE ENERGY VS FORCE: 0.000325096 AT 11.9556
+Info: INCONSISTENCY IN SCOR TABLE ENERGY VS FORCE: 0.000324844 AT 11.9556
+Info: INCONSISTENCY IN VDWA TABLE ENERGY VS FORCE: 0.0040507 AT 0.251946
+Info: INCONSISTENCY IN VDWB TABLE ENERGY VS FORCE: 0.00150189 AT 0.251946
+Info: Startup phase 2 took 0.0136127 s, 143.5 MB of memory in use
+Info: Startup phase 3 took 5.3721e-05 s, 143.5 MB of memory in use
+Info: Startup phase 4 took 0.000139452 s, 145.25 MB of memory in use
+Info: Startup phase 5 took 4.8061e-05 s, 145.25 MB of memory in use
+Info: PATCH GRID IS 4 (PERIODIC) BY 4 (PERIODIC) BY 4 (PERIODIC)
+Info: PATCH GRID IS 1-AWAY BY 1-AWAY BY 1-AWAY
+Info: Reading from binary file parent.vel
+Info: REMOVING COM VELOCITY 0.0206207 -0.0858377 0.00901508
+Info: LARGEST PATCH (25) HAS 1034 ATOMS
+Info: TORUS A SIZE 1 USING 0
+Info: TORUS B SIZE 1 USING 0
+Info: TORUS C SIZE 1 USING 0
+Info: TORUS MINIMAL MESH SIZE IS 1 BY 1 BY 1
+Info: Placed 100% of base nodes on same physical node as patch
+Info: Startup phase 6 took 0.00256857 s, 145.25 MB of memory in use
+Info: PME using 1 x 1 x 1 pencil grid for FFT and reciprocal sum.
+Info: Startup phase 7 took 0.000114646 s, 145.25 MB of memory in use
+Info: Updated CUDA force table with 4096 elements.
+Info: Updated CUDA LJ table with 751 x 751 elements.
+Info: Startup phase 8 took 0.00534882 s, 154 MB of memory in use
+Info: Startup phase 9 took 5.6727e-05 s, 154 MB of memory in use
+Info: Startup phase 10 took 7.0212e-05 s, 154 MB of memory in use
+Info: Startup phase 11 took 0.00207088 s, 156 MB of memory in use
+LDB: Central LB being created...
+Info: Startup phase 12 took 0.0016574 s, 159.25 MB of memory in use
+Info: CREATING 1504 COMPUTE OBJECTS
+Info: Found 309 unique exclusion lists needing 996 bytes
+Info: useSync: 0 useProxySync: 0
+Info: Startup phase 13 took 0.00559073 s, 164.25 MB of memory in use
+Info: Startup phase 14 took 5.2419e-05 s, 164.25 MB of memory in use
+Info: Startup phase 15 took 2.1731e-05 s, 164.25 MB of memory in use
+Info: Finished startup at 3.63627 s, 164.25 MB of memory in use
+
+TCL: Running for 50000 steps
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:       0      1213.2598      3459.0212      3544.8125       226.5255          -4505.2046     -1097.6966         0.0000         0.0000      4446.8585           7287.5764       295.6872      2840.7179      7342.0962       295.6872             93.6994        95.7342   1000000.0000        93.6994        95.7342
+
+LDB: ============= START OF LOAD BALANCING ============== 3.7827
+LDB: ============== END OF LOAD BALANCING =============== 3.78274
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 3.78279
+ENERGY:     500      1278.7667      3550.2955      3559.3651       185.6934          -4485.1701     -1200.5222         0.0000         0.0000      4485.8961           7374.3246       298.2830      2888.4285      7428.4846       298.2804            -25.8919       -25.1005   1000000.0000         2.2505         2.2448
+
+OPENING COORDINATE DCD FILE
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 500
+The last position output (seq=500) takes 0.017 seconds, 182.500 MB of memory in use
+LDB: ============= START OF LOAD BALANCING ============== 4.32008
+LDB: Partitioning computes with target load 0.000000
+LDB: Increased migratable compute count from 0 to 0
+LDB: Largest unpartitionable compute is 0.000000
+LDB: ============== END OF LOAD BALANCING =============== 4.32024
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 4.32053
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 1000
+The last position output (seq=1000) takes 0.000 seconds, 182.500 MB of memory in use
+Info: Initial time: 20 CPUs 0.000679348 s/step 0.00393141 days/ns 182.5 MB memory
+TIMING: 1000  CPU: 0.66888, 0.000657253/step  Wall: 0.69179, 0.000679929/step, 0.00925458 hours remaining, 182.500000 MB of memory in use.
+ENERGY:    1000      1250.7589      3526.9977      3549.5259       212.7570          -4505.9594     -1191.7982         0.0000         0.0000      4552.2115           7394.4936       302.6925      2842.2820      7451.5430       299.7368            -20.8872       -19.4823   1000000.0000        -4.7993        -4.7943
+
+LDB: ============= START OF LOAD BALANCING ============== 4.44996
+LDB: ============== END OF LOAD BALANCING =============== 4.45001
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 4.45007
+ENERGY:    1500      1239.2696      3594.1182      3516.6075       200.4061          -4454.5790     -1213.0998         0.0000         0.0000      4472.8490           7355.5715       297.4154      2882.7225      7410.2839       299.6203             35.7707        37.2934   1000000.0000       -12.5004       -12.5031
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 1500
+The last position output (seq=1500) takes 0.000 seconds, 182.500 MB of memory in use
+LDB: ============= START OF LOAD BALANCING ============== 4.96924
+LDB: TIME 4.96934 LOAD: AVG 0.0666057 MAX 0.160689  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 None MEM: 182.5 MB
+LDB: TIME 4.96939 LOAD: AVG 0.0666057 MAX 0.160689  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 TorusLB MEM: 182.5 MB
+LDB: ============== END OF LOAD BALANCING =============== 4.96945
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 4.96966
+Info: Initial time: 20 CPUs 0.000648451 s/step 0.00375261 days/ns 182.5 MB memory
+TIMING: 2000  CPU: 1.31416, 0.000645279/step  Wall: 1.34082, 0.000649026/step, 0.00865368 hours remaining, 182.500000 MB of memory in use.
+ENERGY:    2000      1256.7931      3516.6737      3539.3813       198.5808          -4504.1454     -1114.7343         0.0000         0.0000      4444.7552           7337.3044       295.5474      2892.5492      7389.0716       298.5008             50.9803        54.9459   1000000.0000        -3.3841        -3.3741
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 2000
+The last position output (seq=2000) takes 0.000 seconds, 182.500 MB of memory in use
+ENERGY:    2500      1317.0803      3512.8941      3536.8400       194.9097          -4450.3346     -1190.6400         0.0000         0.0000      4509.2542           7430.0036       299.8361      2920.7494      7486.0868       299.2063            -52.8963       -49.7193   1000000.0000       -10.7447       -10.7521
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 2500
+The last position output (seq=2500) takes 0.000 seconds, 182.500 MB of memory in use
+LDB: ============= START OF LOAD BALANCING ============== 5.62393
+LDB: TIME 5.62409 LOAD: AVG 0.0822879 MAX 0.196957  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 None MEM: 182.5 MB
+LDB: TIME 5.62412 LOAD: AVG 0.0822879 MAX 0.196957  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 RefineTorusLB MEM: 182.5 MB
+LDB: TIME 5.62414 LOAD: AVG 0.0822879 MAX 0.196957  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 RefineTorusLB MEM: 182.5 MB
+LDB: Reverting to original mapping
+LDB: ============== END OF LOAD BALANCING =============== 5.62421
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 5.62451
+Info: Initial time: 20 CPUs 0.000654491 s/step 0.00378757 days/ns 182.5 MB memory
+TIMING: 3000  CPU: 1.9655, 0.000651343/step  Wall: 1.99592, 0.000655105/step, 0.00855276 hours remaining, 182.500000 MB of memory in use.
+ENERGY:    3000      1243.3263      3580.6924      3576.6383       204.2584          -4479.5495     -1228.8988         0.0000         0.0000      4483.2164           7379.6835       298.1048      2896.4671      7433.5565       300.4866            -23.7073       -20.7115   1000000.0000        -2.7051        -2.7238
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 3000
+The last position output (seq=3000) takes 0.000 seconds, 182.500 MB of memory in use
+ENERGY:    3500      1272.0970      3510.7560      3526.5416       209.2720          -4470.9741     -1233.9971         0.0000         0.0000      4500.5508           7314.2463       299.2574      2813.6955      7368.9711       297.0685            -73.5146       -71.0816   1000000.0000        -1.5916        -1.6130
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 3500
+The last position output (seq=3500) takes 0.000 seconds, 182.500 MB of memory in use
+LDB: ============= START OF LOAD BALANCING ============== 6.26782
+LDB: TIME 6.26791 LOAD: AVG 0.0788649 MAX 0.199181  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 None MEM: 182.75 MB
+LDB: TIME 6.26794 LOAD: AVG 0.0788649 MAX 0.199181  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 RefineTorusLB MEM: 182.75 MB
+LDB: TIME 6.26796 LOAD: AVG 0.0788649 MAX 0.199181  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 RefineTorusLB MEM: 182.75 MB
+LDB: Reverting to original mapping
+LDB: ============== END OF LOAD BALANCING =============== 6.26802
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 6.26823
+Info: Benchmark time: 20 CPUs 0.000643271 s/step 0.00372263 days/ns 182.75 MB memory
+TIMING: 4000  CPU: 2.60559, 0.00064009/step  Wall: 2.63963, 0.00064371/step, 0.00822519 hours remaining, 182.750000 MB of memory in use.
+ENERGY:    4000      1253.9380      3582.8759      3523.5004       201.8258          -4503.3437     -1220.4784         0.0000         0.0000      4442.2121           7280.5301       295.3783      2838.3180      7333.0103       297.4050            -45.0753       -42.8493   1000000.0000         1.9166         1.9155
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 4000
+The last position output (seq=4000) takes 0.000 seconds, 182.750 MB of memory in use
+ENERGY:    4500      1244.0320      3501.6526      3578.9379       195.4459          -4539.2820     -1226.2647         0.0000         0.0000      4416.5261           7171.0479       293.6703      2754.5218      7224.2503       294.2507            -97.2433       -97.0392   1000000.0000         1.6511         1.6613
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 4500
+The last position output (seq=4500) takes 0.000 seconds, 182.750 MB of memory in use
+Info: Benchmark time: 20 CPUs 0.000643763 s/step 0.00372548 days/ns 183 MB memory
+TIMING: 5000  CPU: 3.24581, 0.000640223/step  Wall: 3.28345, 0.000643823/step, 0.00804778 hours remaining, 183.000000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    5000      1249.5376      3558.6105      3513.2420       204.0393          -4518.5551     -1185.1496         0.0000         0.0000      4443.0338           7264.7587       295.4329      2821.7249      7317.7945       293.5786            -22.9343       -21.2734   1000000.0000        -1.0927        -1.0849
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 5000
+The last position output (seq=5000) takes 0.000 seconds, 183.000 MB of memory in use
+ENERGY:    5500      1260.4206      3546.6084      3532.1024       204.1253          -4521.8528     -1160.9246         0.0000         0.0000      4456.9694           7317.4485       296.3595      2860.4791      7372.1781       296.4720             42.1530        44.5543   1000000.0000       -12.7156       -12.7358
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 5500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 6000
+Info: Benchmark time: 20 CPUs 0.000654598 s/step 0.00378818 days/ns 183.25 MB memory
+TIMING: 6000  CPU: 3.89691, 0.000651099/step  Wall: 3.93807, 0.000654618/step, 0.00800089 hours remaining, 183.250000 MB of memory in use.
+ENERGY:    6000      1274.8599      3518.1893      3577.2967       214.5970          -4527.1722     -1148.7225         0.0000         0.0000      4338.5611           7247.6094       288.4862      2909.0482      7297.7260       296.9100            -55.5364       -53.7418   1000000.0000         0.2414         0.2421
+
+ENERGY:    6500      1262.7991      3521.7502      3576.0415       183.4704          -4480.2193     -1153.7691         0.0000         0.0000      4594.2230           7504.2958       305.4860      2910.0729      7559.4038       297.3051             16.1603        18.3135   1000000.0000        -3.0155        -3.0252
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 6500
+Info: Benchmark time: 20 CPUs 0.000664075 s/step 0.00384303 days/ns 183.25 MB memory
+TIMING: 7000  CPU: 4.55741, 0.000660494/step  Wall: 4.60219, 0.000664121/step, 0.00793255 hours remaining, 183.250000 MB of memory in use.
+ENERGY:    7000      1273.7072      3554.0255      3546.6852       191.2760          -4501.1234     -1137.6545         0.0000         0.0000      4565.1589           7492.0749       303.5534      2926.9160      7546.5405       301.6466            -91.1200       -88.7748   1000000.0000       -10.9485       -10.9366
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 7000
+ENERGY:    7500      1278.2384      3490.9632      3516.7186       202.4161          -4431.7356     -1148.4850         0.0000         0.0000      4513.6305           7421.7462       300.1271      2908.1157      7473.2822       300.6709              1.7806         5.2656   1000000.0000        -1.6208        -1.6045
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 7500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 8000
+Info: Benchmark time: 20 CPUs 0.000641909 s/step 0.00371475 days/ns 183.25 MB memory
+TIMING: 8000  CPU: 5.1958, 0.000638392/step  Wall: 5.24412, 0.000641925/step, 0.00748912 hours remaining, 183.250000 MB of memory in use.
+ENERGY:    8000      1229.2470      3452.1869      3567.8172       215.5252          -4447.8350     -1160.6870         0.0000         0.0000      4460.0860           7316.3404       296.5668      2856.2544      7372.4508       298.5690             -0.9657         0.8967   1000000.0000        -1.2174        -1.1996
+
+ENERGY:    8500      1256.7728      3512.4360      3552.8260       209.5232          -4515.4462     -1179.0824         0.0000         0.0000      4428.8122           7265.8416       294.4873      2837.0294      7322.1209       295.8253            -26.0751       -25.1653   1000000.0000       -10.9694       -10.9627
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 8500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 9000
+Info: Benchmark time: 20 CPUs 0.000649331 s/step 0.0037577 days/ns 183.5 MB memory
+TIMING: 9000  CPU: 5.84119, 0.00064539/step  Wall: 5.89347, 0.000649348/step, 0.00739536 hours remaining, 183.500000 MB of memory in use.
+ENERGY:    9000      1239.1292      3506.7135      3567.7481       203.2379          -4517.4270     -1179.1641         0.0000         0.0000      4505.9671           7326.2046       299.6176      2820.2375      7385.0745       295.2836            -21.1197       -19.2443   1000000.0000       -17.3882       -17.3868
+
+ENERGY:    9500      1258.0763      3479.1731      3572.8408       200.6758          -4493.7026     -1205.1547         0.0000         0.0000      4485.4461           7297.3549       298.2531      2811.9088      7351.5093       298.1540            -16.8076       -16.6072   1000000.0000         9.3621         9.3393
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 9500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 10000
+WRITING COORDINATES TO RESTART FILE AT STEP 10000
+FINISHED WRITING RESTART COORDINATES
+TIMING: 10000  CPU: 6.48107, 0.000639883/step  Wall: 6.58383, 0.000690369/step, 0.00767077 hours remaining, 183.750000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   10000      1259.6964      3450.8706      3538.8498       198.9337          -4474.6244     -1195.0025         0.0000         0.0000      4486.2320           7264.9557       298.3053      2778.7237      7322.0404       296.0079             21.5642        21.4983   1000000.0000       -15.9649       -15.9591
+
+WRITING EXTENDED SYSTEM TO RESTART FILE AT STEP 10000
+WRITING VELOCITIES TO RESTART FILE AT STEP 10000
+FINISHED WRITING RESTART VELOCITIES
+The last velocity output (seq=10000) takes 0.043 seconds, 183.750 MB of memory in use
+ENERGY:   10500      1247.4081      3535.7810      3539.6684       214.0508          -4524.6784     -1170.6305         0.0000         0.0000      4512.0958           7353.6952       300.0251      2841.5994      7410.5626       298.3548             19.5749        22.8594   1000000.0000         8.7302         8.7623
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 10500
+TIMING: 11000  CPU: 7.12505, 0.00064398/step  Wall: 7.3052, 0.000721367/step, 0.00781481 hours remaining, 183.750000 MB of memory in use.
+ENERGY:   11000      1254.2782      3486.7145      3530.5873       205.1276          -4452.3001     -1161.0741         0.0000         0.0000      4505.1348           7368.4683       299.5622      2863.3335      7424.8632       298.2584            -82.3958       -80.1342   1000000.0000        -0.1900        -0.2032
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 11000
+ENERGY:   11500      1276.4965      3574.2571      3561.3109       203.6014          -4518.1563     -1194.9977         0.0000         0.0000      4568.1007           7470.6126       303.7491      2902.5119      7524.5051       300.5537            -16.5130       -16.0192   1000000.0000        -7.4773        -7.4827
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 11500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 12000
+TIMING: 12000  CPU: 7.78639, 0.000661339/step  Wall: 7.97076, 0.000665558/step, 0.00702534 hours remaining, 183.750000 MB of memory in use.
+ENERGY:   12000      1289.0745      3548.5059      3569.5010       212.9654          -4515.2431     -1180.7341         0.0000         0.0000      4486.9089           7410.9785       298.3503      2924.0696      7469.8723       301.7059            -29.6713       -28.0629   1000000.0000        -0.7523        -0.7622
+
+ENERGY:   12500      1253.1732      3497.0376      3557.7746       204.1115          -4477.2649     -1201.0401         0.0000         0.0000      4542.1628           7375.9545       302.0243      2833.7918      7432.7565       298.3895            -57.4053       -55.5817   1000000.0000        -3.2186        -3.2175
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 12500
+TIMING: 13000  CPU: 8.44078, 0.000654385/step  Wall: 8.62975, 0.000658993/step, 0.00677298 hours remaining, 183.750000 MB of memory in use.
+ENERGY:   13000      1273.1689      3524.9682      3535.5785       204.1044          -4582.7338     -1128.7661         0.0000         0.0000      4528.1204           7354.4405       301.0906      2826.3201      7414.2797       296.4365            -37.7753       -35.3130   1000000.0000        -2.4654        -2.4611
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 13000
+ENERGY:   13500      1318.3157      3452.6042      3536.7991       200.9597          -4400.9331     -1205.3336         0.0000         0.0000      4517.6995           7420.1114       300.3977      2902.4119      7472.8629       298.3863            -33.0181       -31.2534   1000000.0000        -5.9633        -5.9595
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 13500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 14000
+TIMING: 14000  CPU: 9.11406, 0.000673287/step  Wall: 9.30761, 0.000677854/step, 0.00677854 hours remaining, 183.750000 MB of memory in use.
+ENERGY:   14000      1262.0797      3519.5265      3575.6326       224.6914          -4498.3809     -1178.0094         0.0000         0.0000      4499.2038           7404.7436       299.1679      2905.5398      7455.9478       300.5303             76.4840        77.9288   1000000.0000         1.0987         1.1138
+
+ENERGY:   14500      1269.1012      3546.3945      3538.0216       196.9210          -4487.2656     -1145.0560         0.0000         0.0000      4473.2113           7391.3281       297.4395      2918.1168      7447.2038       299.7529            -42.7106       -41.2048   1000000.0000       -12.3997       -12.3932
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 14500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 15000
+TIMING: 15000  CPU: 9.78677, 0.000672701/step  Wall: 9.98484, 0.000677229/step, 0.00658417 hours remaining, 183.750000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   15000      1220.2499      3592.6289      3513.3338       209.2240          -4508.3864     -1194.7168         0.0000         0.0000      4483.6643           7315.9976       298.1346      2832.3333      7371.6224       298.6866             33.6395        36.2434   1000000.0000        -3.3935        -3.4100
+
+ENERGY:   15500      1259.4825      3539.7964      3546.5606       204.4778          -4536.5817     -1167.7674         0.0000         0.0000      4535.9572           7381.9253       301.6117      2845.9681      7438.2206       298.5020             38.4890        40.9430   1000000.0000        -4.2727        -4.2682
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 15500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 16000
+TIMING: 16000  CPU: 10.4472, 0.000660482/step  Wall: 10.6497, 0.000664862/step, 0.00627926 hours remaining, 183.750000 MB of memory in use.
+ENERGY:   16000      1262.5256      3527.5434      3532.4909       210.9760          -4539.2402     -1203.6921         0.0000         0.0000      4440.2391           7230.8427       295.2471      2790.6036      7285.5797       296.7468            -63.2328       -61.5923   1000000.0000        -6.6818        -6.6454
+
+ENERGY:   16500      1265.8716      3442.1050      3521.6505       188.2406          -4496.7559     -1158.8488         0.0000         0.0000      4522.4493           7284.7124       300.7135      2762.2631      7338.7699       296.1799             17.5304        19.7968   1000000.0000         0.8070         0.7732
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 16500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 17000
+TIMING: 17000  CPU: 11.1066, 0.000659358/step  Wall: 11.3135, 0.000663787/step, 0.00608471 hours remaining, 183.750000 MB of memory in use.
+ENERGY:   17000      1276.5975      3493.2980      3517.3878       200.3573          -4502.9769     -1149.0675         0.0000         0.0000      4484.4582           7320.0545       298.1874      2835.5963      7378.0483       297.1856             -4.0063        -3.1468   1000000.0000       -11.0694       -11.0691
+
+ENERGY:   17500      1201.0582      3530.0780      3571.8834       205.7708          -4544.6825     -1146.4582         0.0000         0.0000      4434.1764           7251.8262       294.8440      2817.6498      7307.7919       295.3617              6.9154         8.1235   1000000.0000       -15.9888       -15.9836
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 17500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 18000
+TIMING: 18000  CPU: 11.7304, 0.000623804/step  Wall: 11.9427, 0.000629195/step, 0.00559285 hours remaining, 184.000000 MB of memory in use.
+ENERGY:   18000      1250.0785      3543.2106      3556.2062       193.2170          -4503.2489     -1191.8096         0.0000         0.0000      4444.6667           7292.3206       295.5415      2847.6539      7347.5346       296.4424              5.8107         7.7576   1000000.0000         4.4752         4.4685
+
+ENERGY:   18500      1203.3711      3568.2919      3533.3882       194.7325          -4506.6905     -1138.5533         0.0000         0.0000      4453.0203           7307.5601       296.0970      2854.5398      7363.2406       295.1412             20.1504        22.6185   1000000.0000        -6.5575        -6.5379
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 18500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 19000
+TIMING: 19000  CPU: 12.369, 0.000638581/step  Wall: 12.5857, 0.000643065/step, 0.00553751 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   19000      1283.3166      3513.4328      3529.5698       220.8714          -4573.4652     -1176.2780         0.0000         0.0000      4450.5891           7248.0365       295.9353      2797.4474      7305.0711       295.1017            -67.1592       -63.8237   1000000.0000        -3.8077        -3.8113
+
+ENERGY:   19500      1237.2322      3591.2339      3557.9573       205.8923          -4518.1630     -1184.7129         0.0000         0.0000      4532.1193           7421.5590       301.3565      2889.4397      7478.3699       299.9319            -12.0626       -10.0666   1000000.0000        -3.8114        -3.8246
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 19500
+TIMING: 20000  CPU: 12.9967, 0.000627688/step  Wall: 13.2179, 0.000632175/step, 0.00526813 hours remaining, 184.250000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   20000      1240.0551      3531.4931      3551.4748       206.7950          -4504.3204     -1203.7563         0.0000         0.0000      4509.9179           7331.6591       299.8803      2821.7412      7387.0643       298.2043            -28.9138       -28.4307   1000000.0000        -7.3277        -7.3230
+
+WRITING EXTENDED SYSTEM TO RESTART FILE AT STEP 20000
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 20000
+WRITING COORDINATES TO RESTART FILE AT STEP 20000
+FINISHED WRITING RESTART COORDINATES
+WRITING VELOCITIES TO RESTART FILE AT STEP 20000
+FINISHED WRITING RESTART VELOCITIES
+The last velocity output (seq=20000) takes 0.035 seconds, 184.250 MB of memory in use
+ENERGY:   20500      1239.0680      3575.3427      3532.4166       206.9014          -4522.2596     -1210.4611         0.0000         0.0000      4477.3093           7298.3174       297.7120      2821.0080      7352.4139       298.0436             -5.1621        -3.9936   1000000.0000        -0.7311        -0.7223
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 20500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 21000
+TIMING: 21000  CPU: 13.633, 0.000636324/step  Wall: 13.9743, 0.000756368/step, 0.00609296 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   21000      1213.6148      3574.7333      3528.3382       200.7065          -4506.3022     -1198.6098         0.0000         0.0000      4507.9775           7320.4582       299.7513      2812.4807      7376.3027       297.8443             72.0678        73.2549   1000000.0000        -3.7617        -3.7836
+
+ENERGY:   21500      1233.3780      3487.3355      3483.9540       195.1790          -4449.4867     -1240.5667         0.0000         0.0000      4573.7046           7283.4976       304.1217      2709.7931      7343.8205       296.8312            -83.8776       -80.2592   1000000.0000         2.6758         2.6851
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 21500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 22000
+TIMING: 22000  CPU: 14.2671, 0.000634069/step  Wall: 14.6125, 0.000638227/step, 0.00496399 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   22000      1249.6517      3455.5572      3540.0493       209.2614          -4483.1171     -1157.3178         0.0000         0.0000      4447.4671           7261.5518       295.7277      2814.0847      7317.5675       296.2434              2.5937         5.3492   1000000.0000       -14.2829       -14.2570
+
+ENERGY:   22500      1209.1817      3568.3803      3527.0031       240.2585          -4507.0725     -1177.2101         0.0000         0.0000      4410.6850           7271.2260       293.2819      2860.5410      7324.2133       296.3259             51.4626        52.3454   1000000.0000         7.8414         7.8559
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 22500
+TIMING: 23000  CPU: 14.9122, 0.000645101/step  Wall: 15.2613, 0.000648779/step, 0.00486584 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   23000      1261.0024      3567.3593      3541.0963       212.1201          -4520.1152     -1139.9242         0.0000         0.0000      4396.5021           7318.0408       292.3389      2921.5387      7369.5428       297.5996            -39.0967       -37.3527   1000000.0000        -5.3154        -5.3017
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 23000
+ENERGY:   23500      1206.4998      3575.3494      3562.2242       214.2635          -4566.9573     -1167.4199         0.0000         0.0000      4452.6238           7276.5835       296.0706      2823.9597      7328.2745       296.6746             34.2067        35.8443   1000000.0000        11.2762        11.2677
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 23500
+TIMING: 24000  CPU: 15.5561, 0.000643894/step  Wall: 15.909, 0.00064766/step, 0.00467754 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   24000      1209.3679      3604.0688      3520.6493       221.4306          -4496.8080     -1168.3416         0.0000         0.0000      4387.4307           7277.7977       291.7357      2890.3669      7330.4781       296.2528              2.6261         4.1158   1000000.0000       -15.3774       -15.3871
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 24000
+ENERGY:   24500      1268.7833      3475.6720      3513.3998       197.3712          -4488.5612     -1156.8009         0.0000         0.0000      4479.9385           7289.8028       297.8868      2809.8643      7346.6610       296.4307            -35.2592       -32.9993   1000000.0000       -13.7186       -13.7400
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 24500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 25000
+TIMING: 25000  CPU: 16.1944, 0.000638284/step  Wall: 16.5509, 0.000641929/step, 0.00445784 hours remaining, 184.250000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   25000      1256.8468      3611.4871      3539.9278       209.3803          -4591.5700     -1169.2161         0.0000         0.0000      4481.3207           7338.1766       297.9787      2856.8559      7392.9818       296.8485            -13.8674       -14.6669   1000000.0000         8.7897         8.7943
+
+ENERGY:   25500      1217.8900      3543.9565      3521.2368       209.8660          -4472.5600     -1195.3279         0.0000         0.0000      4521.9836           7347.0449       300.6826      2825.0613      7402.4993       297.9763             75.6293        77.7544   1000000.0000        -5.5363        -5.5574
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 25500
+TIMING: 26000  CPU: 16.8264, 0.000632047/step  Wall: 17.1873, 0.000636413/step, 0.00424275 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   26000      1242.3328      3454.5856      3542.9920       213.8428          -4456.3591     -1222.4435         0.0000         0.0000      4599.9840           7374.9346       305.8691      2774.9506      7434.2308       298.2156            -29.6395       -26.2707   1000000.0000        -7.2768        -7.2886
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 26000
+ENERGY:   26500      1222.9837      3640.3099      3560.7608       203.7642          -4612.4062     -1125.5419         0.0000         0.0000      4464.7045           7354.5750       296.8739      2889.8705      7409.8593       299.1021             79.9244        81.8031   1000000.0000        -3.3871        -3.3794
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 26500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 27000
+TIMING: 27000  CPU: 17.4898, 0.000663376/step  Wall: 17.8541, 0.000666806/step, 0.00426015 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   27000      1257.6527      3607.2450      3493.5076       189.3847          -4583.2460     -1121.2893         0.0000         0.0000      4489.7993           7333.0539       298.5425      2843.2546      7387.9986       298.1382             -6.9368        -4.7552   1000000.0000        -4.1381        -4.1617
+
+ENERGY:   27500      1244.5522      3632.3678      3585.7357       200.3366          -4534.4411     -1224.8466         0.0000         0.0000      4426.0743           7329.7789       294.3052      2903.7046      7384.5166       298.1710             -0.8308         0.2342   1000000.0000        -1.7884        -1.7828
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 27500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 28000
+TIMING: 28000  CPU: 18.1284, 0.000638626/step  Wall: 18.4962, 0.000642125/step, 0.0039241 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   28000      1192.7795      3558.3818      3531.8648       213.9624          -4558.7899     -1158.4125         0.0000         0.0000      4466.1098           7245.8958       296.9673      2779.7860      7304.4582       296.0897             41.0128        45.1308   1000000.0000         1.7963         1.7890
+
+ENERGY:   28500      1234.9387      3553.2111      3513.4199       199.7211          -4530.9471     -1207.7012         0.0000         0.0000      4480.8700           7243.5125       297.9488      2762.6425      7301.7026       293.8245              5.4948         8.3790   1000000.0000        -4.0234        -4.0019
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 28500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 29000
+TIMING: 29000  CPU: 18.7603, 0.000631882/step  Wall: 19.1315, 0.000635313/step, 0.003706 hours remaining, 184.250000 MB of memory in use.
+ENERGY:   29000      1228.2461      3475.0835      3568.8258       189.2034          -4483.3869     -1157.3323         0.0000         0.0000      4480.8813           7301.5210       297.9495      2820.6397      7358.2872       295.2059            -26.0212       -24.2504   1000000.0000        -6.7251        -6.7129
+
+ENERGY:   29500      1212.9787      3511.8786      3563.3226       209.5303          -4542.0763     -1121.1686         0.0000         0.0000      4450.1873           7284.6525       295.9086      2834.4653      7340.6879       298.2498             36.5252        38.3480   1000000.0000        -2.1047        -2.1304
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 29500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 30000
+WRITING COORDINATES TO RESTART FILE AT STEP 30000
+FINISHED WRITING RESTART COORDINATES
+TIMING: 30000  CPU: 19.4002, 0.000639922/step  Wall: 19.8168, 0.000685269/step, 0.00380705 hours remaining, 184.500000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   30000      1292.2594      3627.0416      3546.5438       200.2789          -4472.6322     -1209.0092         0.0000         0.0000      4401.5890           7386.0713       292.6771      2984.4823      7433.8061       297.8862            -58.3254       -55.9465   1000000.0000        -9.6141        -9.6362
+
+WRITING EXTENDED SYSTEM TO RESTART FILE AT STEP 30000
+WRITING VELOCITIES TO RESTART FILE AT STEP 30000
+FINISHED WRITING RESTART VELOCITIES
+The last velocity output (seq=30000) takes 0.026 seconds, 184.500 MB of memory in use
+ENERGY:   30500      1268.2054      3604.8459      3532.3714       201.5937          -4482.6878     -1207.1654         0.0000         0.0000      4409.9907           7327.1539       293.2358      2917.1633      7381.7560       298.8780             16.2918        18.1478   1000000.0000        -5.5684        -5.5862
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 30500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 31000
+TIMING: 31000  CPU: 20.0509, 0.000650672/step  Wall: 20.5495, 0.000732736/step, 0.00386722 hours remaining, 184.500000 MB of memory in use.
+ENERGY:   31000      1287.1070      3482.2009      3514.9197       195.3241          -4485.7305     -1200.7432         0.0000         0.0000      4444.8091           7237.8871       295.5510      2793.0781      7292.0111       297.1818            -40.4282       -38.2651   1000000.0000        -1.9454        -1.9331
+
+ENERGY:   31500      1173.9778      3572.4539      3562.8294       203.7090          -4551.3928     -1190.3602         0.0000         0.0000      4485.2047           7256.4217       298.2370      2771.2170      7309.6927       295.2663             25.9466        27.5186   1000000.0000        -5.3953        -5.3924
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 31500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 32000
+TIMING: 32000  CPU: 20.7284, 0.000677525/step  Wall: 21.2307, 0.000681105/step, 0.00340552 hours remaining, 184.500000 MB of memory in use.
+ENERGY:   32000      1282.3816      3572.1315      3535.0287       197.8446          -4546.3359     -1154.0592         0.0000         0.0000      4462.5029           7349.4941       296.7275      2886.9912      7405.3983       297.0049             42.0661        44.2963   1000000.0000        -8.4173        -8.4430
+
+ENERGY:   32500      1225.5144      3545.0685      3567.8915       206.8418          -4552.7543     -1190.7319         0.0000         0.0000      4488.6979           7290.5278       298.4693      2801.8299      7345.6661       297.9395            -14.6971       -11.0431   1000000.0000        -4.3099        -4.3099
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 32500
+TIMING: 33000  CPU: 21.4411, 0.000712722/step  Wall: 21.9524, 0.000721727/step, 0.00340816 hours remaining, 184.500000 MB of memory in use.
+ENERGY:   33000      1289.2623      3543.5740      3534.7562       198.4219          -4584.3504     -1162.9932         0.0000         0.0000      4507.8441           7326.5149       299.7424      2818.6708      7382.5713       298.4441            -23.0424       -21.6956   1000000.0000        -1.7134        -1.7022
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 33000
+ENERGY:   33500      1211.3361      3503.9999      3556.9540       213.8193          -4546.1052     -1174.3890         0.0000         0.0000      4443.6521           7209.2673       295.4740      2765.6152      7263.5606       296.0237            -29.6469       -28.5344   1000000.0000        -3.3408        -3.3426
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 33500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 34000
+TIMING: 34000  CPU: 22.1185, 0.000677367/step  Wall: 22.6342, 0.000681775/step, 0.00303011 hours remaining, 184.500000 MB of memory in use.
+ENERGY:   34000      1219.5137      3529.2522      3522.3551       216.5832          -4530.5119     -1159.9685         0.0000         0.0000      4437.1633           7234.3869       295.0426      2797.2236      7288.8492       295.8505             30.0881        31.2986   1000000.0000         2.8675         2.8480
+
+ENERGY:   34500      1276.2328      3572.6801      3537.6801       202.8725          -4551.3144     -1163.2360         0.0000         0.0000      4444.3245           7319.2397       295.5187      2874.9152      7375.2160       296.5481            -28.0650       -26.0462   1000000.0000        -1.1710        -1.1711
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 34500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 35000
+TIMING: 35000  CPU: 22.7842, 0.000665729/step  Wall: 23.3033, 0.000669171/step, 0.00278821 hours remaining, 184.500000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   35000      1247.7928      3543.3809      3539.6010       214.6308          -4593.1122     -1149.5208         0.0000         0.0000      4474.5761           7277.3487       297.5303      2802.7725      7334.0936       298.0162              6.0914         9.5680   1000000.0000        -7.1392        -7.1737
+
+ENERGY:   35500      1265.0081      3529.3183      3582.2637       211.9056          -4539.4640     -1197.4481         0.0000         0.0000      4434.8361           7286.4196       294.8878      2851.5836      7339.6042       296.3177            -70.8335       -67.4834   1000000.0000         3.7232         3.7030
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 35500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 36000
+TIMING: 36000  CPU: 23.4415, 0.000657247/step  Wall: 23.9646, 0.000661233/step, 0.00257146 hours remaining, 184.500000 MB of memory in use.
+ENERGY:   36000      1300.6584      3549.1634      3597.6729       216.1650          -4577.0884     -1172.5346         0.0000         0.0000      4365.1312           7279.1680       290.2529      2914.0368      7330.1227       295.4942            -15.6192       -13.3261   1000000.0000       -10.8415       -10.8278
+
+ENERGY:   36500      1264.7056      3526.5020      3551.4351       200.3511          -4589.9367     -1170.8628         0.0000         0.0000      4407.8738           7190.0681       293.0950      2782.1942      7246.8769       296.3517            -20.9153       -18.9627   1000000.0000        -6.3421        -6.3360
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 36500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 37000
+TIMING: 37000  CPU: 24.0828, 0.000641369/step  Wall: 24.6101, 0.000645503/step, 0.00233098 hours remaining, 184.500000 MB of memory in use.
+ENERGY:   37000      1236.5233      3552.5962      3556.7279       205.7251          -4594.1250     -1210.5224         0.0000         0.0000      4478.8310           7225.7563       297.8132      2746.9253      7282.1063       294.0322            -34.7624       -30.5531   1000000.0000        -2.9239        -2.9260
+
+ENERGY:   37500      1201.7719      3534.1524      3585.1505       198.1236          -4558.4622     -1134.6763         0.0000         0.0000      4493.7404           7319.8003       298.8046      2826.0599      7377.1818       297.3517             49.7627        52.9587   1000000.0000        -0.6394        -0.6551
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 37500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 38000
+TIMING: 38000  CPU: 24.7254, 0.00064259/step  Wall: 25.2568, 0.000646776/step, 0.00215592 hours remaining, 184.500000 MB of memory in use.
+ENERGY:   38000      1212.8402      3560.3454      3604.3302       207.6815          -4590.8386     -1189.1656         0.0000         0.0000      4482.1738           7287.3669       298.0355      2805.1931      7343.4880       297.9001             -0.3688         1.1951   1000000.0000         6.3888         6.3526
+
+ENERGY:   38500      1280.6033      3545.4827      3552.8972       200.2555          -4544.1747     -1179.1513         0.0000         0.0000      4498.4031           7354.3158       299.1146      2855.9127      7407.4699       299.0284             -7.4608        -5.9577   1000000.0000        -2.7106        -2.7102
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 38500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 39000
+TIMING: 39000  CPU: 25.383, 0.000657596/step  Wall: 25.9186, 0.000661747/step, 0.00202201 hours remaining, 184.500000 MB of memory in use.
+ENERGY:   39000      1283.0244      3653.1248      3589.9474       199.6253          -4639.9245     -1203.2818         0.0000         0.0000      4453.7614           7336.2772       296.1462      2882.5157      7391.1274       299.3090            -14.1986       -13.7539   1000000.0000         5.0077         5.0003
+
+ENERGY:   39500      1231.3181      3576.6021      3576.3031       217.3763          -4568.5100     -1147.6043         0.0000         0.0000      4450.7702           7336.2555       295.9473      2885.4853      7387.2133       298.6702             46.0359        48.3506   1000000.0000        -4.4596        -4.4586
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 39500
+TIMING: 40000  CPU: 26.025, 0.000641943/step  Wall: 26.5648, 0.000646167/step, 0.00179491 hours remaining, 184.500000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   40000      1215.3145      3603.4378      3571.7548       215.6387          -4627.2351     -1180.3541         0.0000         0.0000      4538.9684           7337.5250       301.8119      2798.5566      7395.3839       299.6791            -29.2722       -27.7028   1000000.0000        -3.9007        -3.8898
+
+WRITING EXTENDED SYSTEM TO RESTART FILE AT STEP 40000
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 40000
+WRITING COORDINATES TO RESTART FILE AT STEP 40000
+FINISHED WRITING RESTART COORDINATES
+WRITING VELOCITIES TO RESTART FILE AT STEP 40000
+FINISHED WRITING RESTART VELOCITIES
+The last velocity output (seq=40000) takes 0.045 seconds, 184.500 MB of memory in use
+ENERGY:   40500      1322.6343      3661.8725      3528.9848       212.5771          -4598.8222     -1226.6248         0.0000         0.0000      4534.8889           7435.5106       301.5407      2900.6217      7492.6145       301.6883            -79.3135       -78.0129   1000000.0000        -8.0865        -8.0979
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 40500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 41000
+TIMING: 41000  CPU: 26.7183, 0.000693338/step  Wall: 27.3868, 0.000822006/step, 0.00205501 hours remaining, 184.750000 MB of memory in use.
+ENERGY:   41000      1251.7824      3599.8032      3573.6896       202.8323          -4576.8889     -1196.8084         0.0000         0.0000      4612.5057           7466.9159       306.7017      2854.4102      7521.7795       303.2326            -73.3094       -70.5363   1000000.0000         4.6300         4.6489
+
+ENERGY:   41500      1230.8258      3695.3188      3558.8228       197.9369          -4621.3740     -1149.7981         0.0000         0.0000      4580.7477           7492.4799       304.5900      2911.7322      7547.7007       305.0315             59.0228        59.8263   1000000.0000        -1.6597        -1.6809
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 41500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 42000
+TIMING: 42000  CPU: 27.3682, 0.000649876/step  Wall: 28.0405, 0.00065372/step, 0.00145271 hours remaining, 184.750000 MB of memory in use.
+ENERGY:   42000      1276.1284      3692.4424      3545.9534       202.4340          -4545.5263     -1214.0087         0.0000         0.0000      4561.8737           7519.2969       303.3350      2957.4232      7574.0329       304.8680            -19.7929       -17.4187   1000000.0000        -1.4412        -1.4084
+
+ENERGY:   42500      1310.3005      3538.1212      3579.8174       216.1487          -4605.6818     -1189.6110         0.0000         0.0000      4543.3128           7392.4077       302.1008      2849.0949      7446.3972       302.8266             -2.7868        -1.4795   1000000.0000        -5.5849        -5.5867
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 42500
+LDB: ============= START OF LOAD BALANCING ============== 32.3318
+LDB: ============== END OF LOAD BALANCING =============== 32.3318
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 32.3319
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 43000
+TIMING: 43000  CPU: 28.0274, 0.000659233/step  Wall: 28.7031, 0.000662637/step, 0.00128846 hours remaining, 184.750000 MB of memory in use.
+ENERGY:   43000      1269.9249      3616.2951      3605.6591       196.9229          -4621.1406     -1191.6967         0.0000         0.0000      4492.9535           7368.9182       298.7522      2875.9647      7424.8687       300.2670              1.0745         3.3066   1000000.0000        12.2762        12.2596
+
+ENERGY:   43500      1259.7814      3634.4383      3551.3837       207.9403          -4556.0204     -1178.1395         0.0000         0.0000      4512.0716           7431.4553       300.0235      2919.3837      7485.5026       302.3547            -20.7257       -18.3114   1000000.0000        -5.6076        -5.5978
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 43500
+LDB: ============= START OF LOAD BALANCING ============== 33.036
+LDB: TIME 33.0362 LOAD: AVG 0.0796188 MAX 0.218094  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 None MEM: 185 MB
+LDB: TIME 33.0362 LOAD: AVG 0.0796188 MAX 0.218094  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 RefineTorusLB MEM: 185 MB
+LDB: TIME 33.0362 LOAD: AVG 0.0796188 MAX 0.218094  PROXIES: TOTAL 250 MAXPE 18 MAXPATCH 6 RefineTorusLB MEM: 185 MB
+LDB: ============== END OF LOAD BALANCING =============== 33.0363
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 33.0366
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 44000
+TIMING: 44000  CPU: 28.7279, 0.000700483/step  Wall: 29.4077, 0.000704548/step, 0.00117425 hours remaining, 185.000000 MB of memory in use.
+ENERGY:   44000      1279.3960      3571.6205      3569.4228       213.0043          -4539.9826     -1176.7665         0.0000         0.0000      4579.9686           7496.6632       304.5382      2916.6946      7545.5188       303.2512            -67.4313       -65.0945   1000000.0000        -3.1948        -3.1652
+
+ENERGY:   44500      1236.6504      3605.2785      3575.7336       208.0025          -4569.2179     -1197.5971         0.0000         0.0000      4564.0874           7422.9374       303.4822      2858.8500      7481.4035       302.3705            -37.1315       -35.6305   1000000.0000        -8.3088        -8.3182
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 44500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 45000
+TIMING: 45000  CPU: 29.4117, 0.000683815/step  Wall: 30.0952, 0.000687567/step, 0.000954954 hours remaining, 185.000000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   45000      1291.6100      3640.1167      3558.4514       216.4728          -4620.6862     -1197.0651         0.0000         0.0000      4558.5166           7447.4162       303.1118      2888.8997      7502.9883       303.9457             -5.2014        -4.8452   1000000.0000         5.2095         5.2017
+
+ENERGY:   45500      1247.8558      3566.6334      3583.0379       208.5022          -4629.5135     -1158.7707         0.0000         0.0000      4567.2951           7385.0402       303.6955      2817.7451      7442.1489       303.2187              3.0695         4.9116   1000000.0000        -5.5096        -5.4693
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 45500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 46000
+TIMING: 46000  CPU: 30.1152, 0.000703493/step  Wall: 30.8063, 0.000711068/step, 0.000790076 hours remaining, 185.000000 MB of memory in use.
+ENERGY:   46000      1253.1199      3600.9955      3568.6050       220.1972          -4603.4778     -1200.3905         0.0000         0.0000      4495.8038           7334.8532       298.9418      2839.0493      7389.0161       301.2845            -16.4479       -12.6695   1000000.0000         2.6182         2.6277
+
+ENERGY:   46500      1295.5096      3598.9489      3539.9436       209.3000          -4595.4856     -1192.6566         0.0000         0.0000      4575.7574           7431.3172       304.2582      2855.5598      7490.7045       302.6134            -21.0876       -19.0143   1000000.0000       -11.8393       -11.8428
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 46500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 47000
+TIMING: 47000  CPU: 30.7693, 0.000654065/step  Wall: 31.4638, 0.000657526/step, 0.000547939 hours remaining, 185.000000 MB of memory in use.
+ENERGY:   47000      1231.0428      3572.5712      3526.2107       196.4667          -4558.8615     -1154.6425         0.0000         0.0000      4609.2030           7421.9903       306.4821      2812.7874      7478.2654       303.4301             72.0628        74.6648   1000000.0000        -5.7916        -5.7653
+
+ENERGY:   47500      1289.6725      3641.0097      3601.7034       230.2590          -4673.3115     -1163.1451         0.0000         0.0000      4440.1605           7366.3483       295.2419      2926.1879      7421.6115       303.0824             43.4190        44.2978   1000000.0000         6.0130         6.0038
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 47500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 48000
+TIMING: 48000  CPU: 31.4249, 0.000655671/step  Wall: 32.1251, 0.000661239/step, 0.000367355 hours remaining, 185.000000 MB of memory in use.
+ENERGY:   48000      1230.8986      3511.4301      3518.6900       207.2615          -4569.3280     -1163.1104         0.0000         0.0000      4487.4729           7223.3147       298.3878      2735.8417      7279.6453       298.5957             15.6386        18.2560   1000000.0000       -12.1040       -12.1004
+
+ENERGY:   48500      1228.5806      3588.6663      3561.7060       205.7590          -4617.3182     -1230.4360         0.0000         0.0000      4506.1597           7243.1175       299.6304      2736.9578      7301.8739       297.6538             -2.0476        -0.7801   1000000.0000         2.6270         2.6192
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 48500
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 49000
+TIMING: 49000  CPU: 32.1222, 0.000697248/step  Wall: 32.8268, 0.0007017/step, 0.000194917 hours remaining, 185.000000 MB of memory in use.
+ENERGY:   49000      1219.6173      3537.3716      3599.0644       204.2965          -4595.9952     -1190.8644         0.0000         0.0000      4479.4026           7252.8928       297.8512      2773.4902      7311.5211       296.9578             25.8271        26.4288   1000000.0000        -1.8786        -1.8611
+
+ENERGY:   49500      1230.2160      3513.7527      3555.3216       213.3812          -4652.0315     -1204.4688         0.0000         0.0000      4532.9210           7189.0923       301.4098      2656.1713      7243.7058       296.8103            -30.4450       -29.5484   1000000.0000        -6.5191        -6.5369
+
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 49500
+TIMING: 50000  CPU: 32.8134, 0.000691221/step  Wall: 33.523, 0.000696261/step, 0 hours remaining, 185.000000 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   50000      1265.5341      3505.4278      3521.2121       202.6516          -4552.6024     -1270.5070         0.0000         0.0000      4469.3542           7141.0705       297.1831      2671.7163      7196.6917       294.7003             29.7193        31.3024   1000000.0000        -2.0996        -2.0797
+
+WRITING EXTENDED SYSTEM TO RESTART FILE AT STEP 50000
+WRITING COORDINATES TO DCD FILE seg.dcd AT STEP 50000
+WRITING COORDINATES TO RESTART FILE AT STEP 50000
+FINISHED WRITING RESTART COORDINATES
+WRITING VELOCITIES TO RESTART FILE AT STEP 50000
+FINISHED WRITING RESTART VELOCITIES
+The last velocity output (seq=50000) takes 0.032 seconds, 185.000 MB of memory in use
+WRITING EXTENDED SYSTEM TO OUTPUT FILE AT STEP 50000
+WRITING COORDINATES TO OUTPUT FILE AT STEP 50000
+CLOSING COORDINATE DCD FILE seg.dcd
+WRITING VELOCITIES TO OUTPUT FILE AT STEP 50000
+====================================================
+
+WallClock: 37.432072  CPUTime: 36.323406  Memory: 185.500000 MB
+[Partition 0][Node 0] End of program

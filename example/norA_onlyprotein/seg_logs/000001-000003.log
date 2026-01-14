@@ -1,0 +1,120 @@
++ env
++ sort
+COLORTERM=truecolor
+CONDA_DEFAULT_ENV=westpa
+CONDA_EXE=/home/nsingh/anaconda3/bin/conda
+CONDA_PREFIX=/home/nsingh/anaconda3/envs/westpa
+CONDA_PROMPT_MODIFIER=(westpa) 
+CONDA_PYTHON_EXE=/home/nsingh/anaconda3/bin/python
+CONDA_SHLVL=1
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/10031/bus,guid=f540a7296789dd89619bb9ff695bdbb6
+DBUS_STARTER_ADDRESS=unix:path=/run/user/10031/bus,guid=f540a7296789dd89619bb9ff695bdbb6
+DBUS_STARTER_BUS_TYPE=session
+DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
+DESKTOP_SESSION=ubuntu
+DISPLAY=:0
+GDM_LANG=en
+GDMSESSION=ubuntu
+GMXBIN=/usr/local/gromacs/bin
+GMXDATA=/usr/local/gromacs/share/gromacs
+GMXLDLIB=/usr/local/gromacs/lib
+GMXMAN=/usr/local/gromacs/share/man
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+GNOME_SHELL_SESSION_MODE=ubuntu
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/cdf8490f_04c2_4383_ab9a_8430be01f312
+GNOME_TERMINAL_SERVICE=:1.89
+GPG_AGENT_INFO=/run/user/10031/gnupg/S.gpg-agent:0:1
+GROMACS_DIR=/usr/local/gromacs
+GSM_SKIP_SSH_AGENT_WORKAROUND=true
+GTK_MODULES=gail:atk-bridge
+HOME=/home/nsingh
+IM_CONFIG_PHASE=1
+LANG=en_US.UTF-8
+LANGUAGE=en
+LD_LIBRARY_PATH=/usr/local/gromacs/lib
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LESSOPEN=| /usr/bin/lesspipe %s
+LOGNAME=nitin
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+MANPATH=/home/nsingh/.nvm/versions/node/v22.21.1/share/man:/usr/local/gromacs/share/man:
+MEMORY_PRESSURE_WATCH=/sys/fs/cgroup/user.slice/user-10031.slice/user@10031.service/app.slice/app-gnome\x2dsession\x2dmanager.slice/gnome-session-manager@ubuntu.service/memory.pressure
+MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA=
+NVM_BIN=/home/nsingh/.nvm/versions/node/v22.21.1/bin
+NVM_CD_FLAGS=
+NVM_DIR=/home/nsingh/.nvm
+NVM_INC=/home/nsingh/.nvm/versions/node/v22.21.1/include/node
+OLDPWD=/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/Westpa_pipeline/sims_setup
+PATH=/home/nsingh/anaconda3/envs/westpa/bin:/home/nsingh/Documents/hole2/exe:/home/nsingh/.nvm/versions/node/v22.21.1/bin:/usr/local/gromacs/bin:/home/nsingh/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PKG_CONFIG_PATH=/usr/local/gromacs/lib/pkgconfig
+PROPAGATION_DEBUG=1
+PWD=/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/traj_segs/000001/000003
+PYMOL_PATH=/home/nsingh/Documents/pymol/
+PYTHONPATH=:/home/nsingh/Documents/pymol//modules:
+QT_ACCESSIBILITY=1
+QT_IM_MODULE=ibus
+SEG_DEBUG=1
+SESSION_MANAGER=local/PRL-VERMAAS-WS9:@/tmp/.ICE-unix/3115604,unix/PRL-VERMAAS-WS9:/tmp/.ICE-unix/3115604
+SHELL=/bin/bash
+SHLVL=1
+SSH_AUTH_SOCK=/run/user/10031/keyring/ssh
+SYSTEMD_EXEC_PID=3115604
+TERM=xterm-256color
+USER=nitin
+_=/usr/bin/env
+VTE_VERSION=7600
+WEST_BSTATE_DATA_REF=/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/bstates/eq0
+WEST_BSTATE_ID=0
+WEST_CURRENT_ITER=1
+WEST_CURRENT_SEG_DATA_REF=/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/traj_segs/000001/000003
+WEST_CURRENT_SEG_ID=3
+WEST_CURRENT_SEG_INITPOINT_TYPE=SEG_INITPOINT_NEWTRAJ
+WEST_ISTATE_DATA_REF=/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/istates/1/1.rst
+WEST_ISTATE_ID=1
+WEST_PARENT_DATA_REF=/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/bstates/eq0
+WEST_PCOORD_RETURN=/tmp/tmpvm_xpavm
+WEST_RAND128=16306350874636295185
+WEST_RAND16=141
+WEST_RAND32=2902926271
+WEST_RAND64=3277716626756956209
+WEST_RANDFLOAT=0.004577913572061942
+WEST_SIM_ROOT=/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein
+XAUTHORITY=/home/nsingh/.Xauthority
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+XDG_CURRENT_DESKTOP=ubuntu:GNOME
+XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/nitin
+XDG_MENU_PREFIX=gnome-
+XDG_RUNTIME_DIR=/run/user/10031
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+XDG_SESSION_CLASS=user
+XDG_SESSION_DESKTOP=ubuntu
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1
+XDG_SESSION_TYPE=x11
+XMODIFIERS=@im=ibus
++ cd /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein
++ mkdir -pv /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/traj_segs/000001/000003
++ cd /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/traj_segs/000001/000003
++ ln -sf /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/common_files/norA_inopen.psf .
++ ln -sf /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/common_files/norA_inopen.pdb .
++ ln -sf /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/common_files/toppar .
++ ln -sf /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/common_files/norA_outopen.pdb .
++ ln -sv /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/bstates/eq0/seg.coor ./parent.coor
+'./parent.coor' -> '/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/bstates/eq0/seg.coor'
++ ln -sv /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/bstates/eq0/seg.vel ./parent.vel
+'./parent.vel' -> '/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/bstates/eq0/seg.vel'
++ ln -sv /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/bstates/eq0/seg.xsc ./parent.xsc
+'./parent.xsc' -> '/serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/bstates/eq0/seg.xsc'
++ sed s/RAND/141/g /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/common_files/md.conf
++ namd2 +p20 md.in
++ python /serviceberry/tank/nitin/small_molecule/channels/norA_data_scores/md_simulations/westpa/WESTPA2.0-NAMD-main/norA_onlyprotein/westpa_scripts/calc_pcoord.py norA_inopen.pdb norA_outopen.pdb seg.dcd /tmp/tmpvm_xpavm
+/home/nsingh/anaconda3/envs/westpa/lib/python3.11/site-packages/mdtraj/formats/pdb/pdbfile.py:208: UserWarning: Unlikely unit cell vectors detected in PDB file likely resulting from a dummy CRYST1 record. Discarding unit cell vectors.
+  warnings.warn(
+Loading topology: norA_inopen.pdb
+Loading reference: norA_outopen.pdb
+Loading trajectory: seg.dcd
+Found 387 common residues for RMSD calculation.
+Calculated RMSD (Angstrom) for 100 frames.
+Last frame RMSD: 3.9791407585144043
+dcdplugin) detected standard 32-bit DCD file of native endianness
+dcdplugin) CHARMM format DCD file (also NAMD 2.1 and later)
++ rm -f md.in seg.restart.coor seg.restart.coor.old seg.restart.vel seg.restart.vel.old seg.restart.xsc seg.restart.xsc.old parent.coor parent.vel parent.xsc

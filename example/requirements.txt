@@ -1,0 +1,6 @@
+westpa>=2.0
+mdtraj>=1.9.7
+numpy
+matplotlib
+h5py
+scipy

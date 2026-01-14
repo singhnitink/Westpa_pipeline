@@ -1,0 +1,47 @@
+Step1: 	run equillibrium sims
+		namd3 +p2 +devices 0 system_eq.namd > eq000.log
+		Now you will have coor, vel and xsc files
+
+Step2: make folders bstates, common_files and westpa_scripts
+
+Step3: cd bstates
+		mkdir eq0
+		cd eq0
+		cp ../../myfiles/system_eq000.coor seg.coor
+		cp ../../myfiles/system_eq000.dcd seg.dcd
+		cp ../../myfiles/system_eq000.vel seg.vel
+		cp ../../myfiles/system_eq000.xsc seg.xsc
+		cd ..
+		touch bstates.txt
+		echo "0 1.0 eq0" > bstates.txt
+
+Step4: cd ../common_files/
+		cp ../../myfiles/*.psf .
+		cp ../../myfiles/*.pdb .
+		Note: Also keep a md.conf
+
+Step5: cd ../westpa_scripts/
+		cp calc_pcoord.py .
+		cp get_pcoord.sh .
+		cp runseg.sh .
+
+Step6: copy west.cfg, env.sh, init.sh and tstate.file in the root directory
+		Note: root directory is the main directory, like lets say you are making a directory for NorA, then inside it will be these four files and then those three folders
+
+
+Step7: ./init.sh ===>>> this will make the west.h5
+
+Step8: w_run --n-workers 4 & > west.log &
+
+How to kill: ps aux | grep w_run
+				pkill -f 12345 or kill 12345
+
+ANALYSIS: 
+# 1. Make a copy of the running data
+cp west.h5 west_copy.h5
+
+# 2. Run analysis on the copy
+cd analysis
+python plot_pcoord_evolution.py ../west_copy.h5
+python calc_free_energy.py ../west_copy.h5
+python trace_walker.py ../west_copy.h5

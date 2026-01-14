@@ -1,0 +1,4 @@
+cellBasisVector1 122.95 0 0 
+cellBasisVector2 0 122.95 0 
+cellBasisVector3 0 0 102.90 
+cellOrigin  0.16  -0.04  0.78 

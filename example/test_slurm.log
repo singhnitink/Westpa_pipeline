@@ -1,0 +1,41 @@
+============================================================
+WESTPA Easy Setup Pipeline
+============================================================
+
+1. Validating inputs...
+
+============================================================
+IMPORTANT: PDB and Basis State Geometry
+============================================================
+WARNING: The pipeline uses --pdb to calculate the initial RMSD.
+         Ensure --pdb and --basis-coor have the SAME geometry.
+         If they differ (e.g., PDB is crystal structure, COOR is
+         equilibrated), you will see pcoord discontinuities in
+         iteration 1, which can affect flux calculations.
+============================================================
+
+
+2. Calculating parameters...
+   Segment: 50000 steps = 100.0 ps
+   pcoord_len: 100 frames
+   Bins: 15 bins
+
+3. Creating directory structure...
+
+4. Copying input files...
+
+5. Generating configuration files...
+Generated submit.sh (Slurm)
+
+============================================================
+Setup Complete!
+============================================================
+
+Your WESTPA simulation is ready in: ./test_slurm
+
+Next steps:
+  cd ./test_slurm
+  conda activate westpa
+  ./init.sh
+  ./run.sh
+
