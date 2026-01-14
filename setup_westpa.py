@@ -11,7 +11,7 @@ Usage:
                            --basis-vel eq.vel --basis-xsc eq.xsc \
                            --output-dir ./my_simulation
 
-Author: Generated with assistance from AI for the scientific community
+Author: Nitin Singh
 """
 
 import argparse
